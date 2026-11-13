@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import AboutSection from './components/AboutSection';
 import CoffeeSection from './components/CoffeeSection';
 import MenuSection from './components/MenuSection';
+import BookCafeSection from './components/BookCafeSection';
 import CateringSection from './components/CateringSection';
 import KitchenBookingSection from './components/KitchenBookingSection';
 import ReservationSection from './components/ReservationSection';
@@ -22,16 +23,16 @@ export default function App() {
   // Cart State
   const [cartItems, setCartItems] = useState([
     {
-      id: "m6",
-      name: "San Daniele Prosciutto & Fior Di Latte Panini",
+      id: "m3",
+      name: "Sunkissed Turkey & Pesto Focaccia",
       price: 18.50,
       quantity: 1,
       image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=400&q=80",
       selectedAddons: []
     },
     {
-      id: "m11",
-      name: "Specialty Flat White (Grinders Reserve)",
+      id: "m12",
+      name: "Specialty Flat White (Melbourne Roast)",
       price: 5.20,
       quantity: 2,
       image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80",
@@ -89,9 +90,9 @@ export default function App() {
   const totalCartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-[#1E1B18] font-sans flex flex-col selection:bg-[#C26D43] selection:text-white">
+    <div className="min-h-screen bg-[#FAF8F5] text-[#1E1B18] font-sans flex flex-col selection:bg-[#404D3C] selection:text-white">
       
-      {/* Top Navbar */}
+      {/* Top Navbar with Official ONE60 Logo */}
       <Navbar
         cartCount={totalCartCount}
         onOpenCart={() => setIsCartOpen(true)}
@@ -115,7 +116,7 @@ export default function App() {
           onOpenKitchen={() => setIsKitchenModalOpen(true)}
         />
 
-        {/* 2. About & Ethos Section */}
+        {/* 2. About & Ethos Section (Shabnam & Shaun's Story) */}
         <AboutSection
           onOpenKitchen={() => setIsKitchenModalOpen(true)}
           onOpenCatering={() => {
@@ -124,48 +125,53 @@ export default function App() {
           }}
         />
 
-        {/* 3. Specialty Coffee Showcase (Inspired by La Veen & Copia) */}
+        {/* 3. The Book Café Cultural Corner (Authentic feature from one60cafe.com.au) */}
+        <BookCafeSection
+          onOpenReservation={() => setIsReservationModalOpen(true)}
+        />
+
+        {/* 4. Specialty Coffee Showcase */}
         <CoffeeSection 
           onSelectCoffee={() => {
             const coffeeItem = {
-              id: "m11",
+              id: "m12",
               name: "Specialty Flat White / Latte",
               category: "coffee",
               price: 5.20,
               dietary: ["GF"],
-              description: "Crafted with Grinders Reserve single origin espresso and silky microfoam milk.",
+              description: "Melbourne-roasted Australian beans extracted by Shaun & Shabnam's team.",
               image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80"
             };
             setSelectedDish(coffeeItem);
           }}
         />
 
-        {/* 4. Interactive All-Day Menu (Inspired by Higher Ground & Copia) */}
+        {/* 5. Interactive All-Day Menu */}
         <MenuSection
           onAddToCart={handleAddToCart}
           onSelectDish={(dish) => setSelectedDish(dish)}
         />
 
-        {/* 5. Corporate & Office Catering (Inspired by Basilica Perth & Copia) */}
+        {/* 6. Corporate & Office Catering (Focaccias, Breakfast & Pastry platters) */}
         <CateringSection
           onOpenCateringWithPackage={handleOpenCateringWithPackage}
         />
 
-        {/* 6. Commercial Kitchen & Venue Hire (Synergy with The Daily Drop) */}
+        {/* 7. Commercial Kitchen & Venue Hire (Synergy with The Daily Drop) */}
         <KitchenBookingSection
           onOpenKitchen={() => setIsKitchenModalOpen(true)}
         />
 
-        {/* 7. Table Reservation Experience (Like Higher Ground / Resy) */}
+        {/* 8. Table Reservation Experience */}
         <ReservationSection />
 
-        {/* 8. Atmosphere & Visual Gallery (The Grounds of Alexandria style) */}
+        {/* 9. Visual Gallery & Atmosphere */}
         <GallerySection />
 
-        {/* 9. Reviews & Praise */}
+        {/* 10. Reviews & Community Praise */}
         <TestimonialsSection />
 
-        {/* 10. Location, Trading Hours & Transit */}
+        {/* 11. Location, Trading Hours & Transit */}
         <LocationHoursSection />
       </main>
 
@@ -179,18 +185,18 @@ export default function App() {
         onOpenKitchen={() => setIsKitchenModalOpen(true)}
       />
 
-      {/* Floating Action Button (Mobile & Quick Access) */}
+      {/* Floating Action Button */}
       <aside aria-label="Floating quick actions" className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
         <button
           onClick={() => setIsReservationModalOpen(true)}
-          className="hidden sm:flex items-center gap-2 px-5 py-3 rounded-full bg-[#181513] text-[#FAF8F5] text-xs font-semibold uppercase tracking-wider shadow-2xl hover:bg-[#C26D43] transition-all duration-300 border border-stone-700/50"
+          className="hidden sm:flex items-center gap-2 px-5 py-3 rounded-full bg-[#404D3C] text-white text-xs font-semibold uppercase tracking-wider shadow-2xl hover:bg-[#2f392c] transition-all duration-300 border border-[#52634d]"
         >
           <span>Book a Table</span>
         </button>
 
         <button
           onClick={() => setIsCartOpen(true)}
-          className="relative p-3.5 rounded-full bg-[#C26D43] text-white shadow-2xl hover:bg-[#a65832] transition-transform hover:scale-105"
+          className="relative p-3.5 rounded-full bg-[#404D3C] text-white shadow-2xl hover:bg-[#2f392c] transition-transform hover:scale-105"
           title="Takeaway Bag"
           aria-label="Takeaway Bag"
         >
@@ -198,14 +204,14 @@ export default function App() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
           {totalCartCount > 0 && (
-            <span className="absolute -top-1 -right-1 bg-[#181513] text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow">
+            <span className="absolute -top-1 -right-1 bg-amber-400 text-stone-900 text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow">
               {totalCartCount}
             </span>
           )}
         </button>
       </aside>
 
-      {/* Modal Dialogs */}
+      {/* Modals */}
       <DishModal
         dish={selectedDish}
         onClose={() => setSelectedDish(null)}
