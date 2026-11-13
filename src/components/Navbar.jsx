@@ -8,10 +8,10 @@ import {
   X, 
   Phone,
   Briefcase,
-  UtensilsCrossed,
-  BookOpen
+  UtensilsCrossed
 } from 'lucide-react';
 import { CAFE_INFO } from '../data/cafeData';
+import Logo from './Logo';
 
 export default function Navbar({ 
   cartCount, 
@@ -26,7 +26,7 @@ export default function Navbar({
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -51,14 +51,14 @@ export default function Navbar({
             <div className="flex items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap">
               <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span className="font-semibold text-amber-200">Where Good Vibes Brew:</span>
-              <span className="hidden sm:inline">160 Murray St Mall, Perth CBD</span>
+              <span className="hidden sm:inline text-stone-200">160 Murray St Mall, Perth CBD</span>
               <span className="text-amber-200/60">•</span>
-              <span>Accepting Corporate Catering & Kitchen Hire Bookings</span>
+              <span className="text-stone-200">Accepting Corporate Catering & Kitchen Hire Bookings</span>
             </div>
             <div className="flex items-center gap-4 text-xs shrink-0">
               <a 
                 href={`tel:${CAFE_INFO.phone}`} 
-                className="hidden md:flex items-center gap-1 hover:text-amber-200 transition-colors"
+                className="hidden md:flex items-center gap-1.5 hover:text-amber-200 transition-colors text-stone-200"
               >
                 <Phone className="w-3.5 h-3.5" />
                 <span>{CAFE_INFO.phone}</span>
@@ -79,21 +79,20 @@ export default function Navbar({
       <nav 
         className={`w-full transition-all duration-300 ${
           isScrolled 
-            ? 'bg-[#FAF8F5]/95 backdrop-blur-md shadow-md py-3 border-b border-stone-200/80' 
-            : 'bg-[#FAF8F5]/85 backdrop-blur-sm py-4 border-b border-stone-200/40'
+            ? 'bg-[#FAF8F5]/95 backdrop-blur-md shadow-md py-2.5 border-b border-stone-200/80' 
+            : 'bg-[#FAF8F5]/90 backdrop-blur-sm py-3.5 border-b border-stone-200/40'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
           {/* Logo & Official Brand Identity */}
-          <a href="#" className="flex items-center gap-3 group">
-            <img 
-              src="/one60-logo.png" 
-              alt="ONE60 Cafe Perth" 
-              className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105 duration-200"
+          <a href="#" className="flex items-center gap-3 group shrink-0">
+            <Logo 
+              variant="dark" 
+              className="h-8 sm:h-9 w-auto transition-transform group-hover:scale-105 duration-200"
             />
             <div className="hidden sm:flex flex-col border-l border-stone-300 pl-3">
-              <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-stone-600 leading-tight">
+              <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-stone-700 leading-tight">
                 Murray St Mall
               </span>
               <span className="text-[9px] uppercase tracking-[0.15em] font-medium text-stone-400">
@@ -103,7 +102,7 @@ export default function Navbar({
           </a>
 
           {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center space-x-6 xl:space-x-7 text-[13px] font-medium tracking-wide uppercase text-stone-700">
+          <div className="hidden xl:flex items-center space-x-6 text-[12px] font-semibold tracking-wider uppercase text-stone-700">
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
@@ -116,7 +115,7 @@ export default function Navbar({
           </div>
 
           {/* Action CTAs */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
             
             {/* Takeaway Cart Button */}
             <button
@@ -127,7 +126,7 @@ export default function Navbar({
             >
               <ShoppingBag className="w-5 h-5" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#404D3C] text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">
+                <span className="absolute -top-1 -right-1 bg-[#404D3C] text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">
                   {cartCount}
                 </span>
               )}
@@ -136,7 +135,7 @@ export default function Navbar({
             {/* Quick Reservation CTA */}
             <button
               onClick={onOpenReservation}
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#404D3C] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#2f392c] hover:shadow-lg transition-all duration-300"
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#404D3C] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#2f392c] hover:shadow-md transition-all duration-300"
             >
               <Calendar className="w-3.5 h-3.5" />
               <span>Book Table</span>
@@ -145,7 +144,7 @@ export default function Navbar({
             {/* Mobile Menu Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-stone-800 hover:bg-stone-100"
+              className="xl:hidden p-2 rounded-lg text-stone-800 hover:bg-stone-100"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
@@ -155,7 +154,7 @@ export default function Navbar({
 
         {/* Mobile Dropdown Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-[#FAF8F5] border-t border-stone-200 px-6 py-6 space-y-4 shadow-xl animate-in slide-in-from-top-2 duration-200">
+          <div className="xl:hidden bg-[#FAF8F5] border-t border-stone-200 px-6 py-6 space-y-4 shadow-xl animate-in slide-in-from-top-2 duration-200">
             <div className="flex flex-col space-y-3 text-sm font-medium uppercase tracking-wider text-stone-700">
               {navLinks.map((link) => (
                 <a

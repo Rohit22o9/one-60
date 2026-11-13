@@ -11,6 +11,7 @@ import {
   BookOpen
 } from 'lucide-react';
 import { CAFE_INFO } from '../data/cafeData';
+import Logo from './Logo';
 
 export default function Footer({ onOpenReservation, onOpenCatering, onOpenKitchen }) {
   const [email, setEmail] = useState("");
@@ -85,11 +86,7 @@ export default function Footer({ onOpenReservation, onOpenCatering, onOpenKitche
           {/* Brand Info with Official Logo */}
           <div className="lg:col-span-2 space-y-4">
             <div>
-              <img 
-                src="/one60-logo-white.png" 
-                alt="ONE60 Cafe Perth" 
-                className="h-10 w-auto object-contain mb-3" 
-              />
+              <Logo variant="white" className="h-10 w-auto mb-3" />
             </div>
             <p className="text-stone-400 text-xs sm:text-sm font-light max-w-sm leading-relaxed">
               Founded by Shabnam and Shaun. A Perth CBD favorite built on good coffee, great food, the Book Café cultural corner, and genuine community spirit.

@@ -11,6 +11,7 @@ import {
   BookOpen
 } from 'lucide-react';
 import { CAFE_INFO } from '../data/cafeData';
+import Logo from './Logo';
 
 export default function Hero({ onOpenReservation, onOpenCatering, onOpenKitchen }) {
   return (
@@ -27,7 +28,7 @@ export default function Hero({ onOpenReservation, onOpenCatering, onOpenKitchen 
           <div className="lg:col-span-7 space-y-6">
             
             {/* Location Pill & Operating Status */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/80 border border-stone-200/80 shadow-xs text-xs font-medium text-stone-700 backdrop-blur-xs">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/90 border border-stone-200/80 shadow-xs text-xs font-medium text-stone-700 backdrop-blur-xs">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -35,7 +36,7 @@ export default function Hero({ onOpenReservation, onOpenCatering, onOpenKitchen 
               <span className="font-semibold text-[#404D3C]">Where Good Vibes Brew</span>
               <span className="text-stone-300">|</span>
               <span className="flex items-center gap-1 text-stone-600">
-                <MapPin className="w-3 h-3 text-[#404D3C]" />
+                <MapPin className="w-3.5 h-3.5 text-[#404D3C]" />
                 160 Murray Street Mall, Perth CBD
               </span>
             </div>
@@ -43,10 +44,9 @@ export default function Hero({ onOpenReservation, onOpenCatering, onOpenKitchen 
             {/* Main Headline with Official Brand */}
             <div>
               <div className="mb-2">
-                <img 
-                  src="/one60-logo.png" 
-                  alt="ONE60" 
-                  className="h-10 sm:h-12 w-auto object-contain mb-3" 
+                <Logo 
+                  variant="dark" 
+                  className="h-10 sm:h-12 w-auto mb-3" 
                 />
               </div>
               <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-[#181513] leading-[1.12]">
@@ -173,13 +173,9 @@ export default function Hero({ onOpenReservation, onOpenCatering, onOpenKitchen 
                 </div>
               </div>
 
-              {/* Floating Badge 1: Official Logo Badge (White on Olive #404D3C) */}
-              <div className="absolute -top-6 -left-6 sm:-left-8 p-3 rounded-2xl bg-[#404D3C] text-white shadow-xl border border-[#4e5d4a] hidden sm:flex items-center gap-3">
-                <img 
-                  src="/one60-logo-white.png" 
-                  alt="ONE60" 
-                  className="h-7 w-auto object-contain"
-                />
+              {/* Floating Badge 1: Official Logo Badge on Deep Green */}
+              <div className="absolute -top-4 -left-4 sm:-left-6">
+                <Logo variant="badge" className="h-6 sm:h-7 w-auto" />
               </div>
 
               {/* Floating Badge 2: Commercial Kitchen Partnership */}
