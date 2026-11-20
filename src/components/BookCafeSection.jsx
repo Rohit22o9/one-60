@@ -1,10 +1,78 @@
-import React, { useState } from 'react';
-import { BookOpen, Coffee, Heart, Sparkles, BookMarked, Globe2, Compass } from 'lucide-react';
-import { BOOK_CAFE_INFO } from '../data/cafeData';
-import { bookCafeNook } from '../assets/photos';
+import React, { useState, useEffect } from 'react';
+import { 
+  BookOpen, 
+  Coffee, 
+  Heart, 
+  Sparkles, 
+  BookMarked, 
+  Globe2, 
+  ChevronLeft, 
+  ChevronRight 
+} from 'lucide-react';
+import { 
+  bookCafeNook, 
+  coffeeBarista, 
+  bookReadingTable, 
+  bookCornerCoffee, 
+  icedCoffee 
+} from '../assets/photos';
 
 export default function BookCafeSection() {
   const [activeTab, setActiveTab] = useState(0);
+
+  // Slideshow slides for Book Cafe Section
+  const bookSlides = [
+    {
+      image: bookCafeNook,
+      tag: "Cultural Corner",
+      title: "The Book Café Reading Nook",
+      desc: "Located directly in front of the coffee machine for unhurried contemplation"
+    },
+    {
+      image: coffeeBarista,
+      tag: "Coffee Meets Literature",
+      title: "Fresh Espresso Brewing Steps Away",
+      desc: "Shaun and Shabnam's baristas crafting your flat white while you read"
+    },
+    {
+      image: bookReadingTable,
+      tag: "Curated by Amir",
+      title: "Persian Classics & Global Poetry",
+      desc: "Hand-picked bilingual translations, contemporary fiction & philosophy"
+    },
+    {
+      image: bookCornerCoffee,
+      tag: "CBD Reading Sanctuary",
+      title: "An Unhurried Murray St Mall Retreat",
+      desc: "Wi-Fi, cozy seating, and welcoming conversations with our team"
+    },
+    {
+      image: icedCoffee,
+      tag: "Afternoon Companion",
+      title: "Signature Brews & Deep Stories",
+      desc: "Trade a book from your collection on our community exchange shelf"
+    }
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-advance slideshow
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % bookSlides.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused, bookSlides.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % bookSlides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + bookSlides.length) % bookSlides.length);
+  };
 
   const featuredBooks = [
     {
@@ -28,7 +96,7 @@ export default function BookCafeSection() {
       subtitle: "From Beans to Brewing",
       author: "James Hoffmann",
       category: "Coffee Terroir & Origins",
-      desc: "Explore the growing regions of Colombia, Ethiopia, and Central America — mirroring the story depicted on One60's Colombian wall mural.",
+      desc: "Explore the growing regions of Colombia, Ethiopia, and Central America — mirroring the story depicted on ONE60's Colombian wall mural.",
       status: "In-Store Reference"
     },
     {
@@ -68,30 +136,93 @@ export default function BookCafeSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-12">
           
-          {/* Left: Real Corner Photo */}
+          {/* Left: INTERACTIVE ANIMATED SLIDESHOW WITH REAL PHOTOS */}
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/3] bg-stone-300">
-              <img 
-                src={bookCafeNook} 
-                alt="Book Cafe Corner and Coffee Nook at One60" 
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div 
+              className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/3] bg-stone-900"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              {/* Slides mapping */}
+              {bookSlides.map((slide, idx) => (
+                <div
+                  key={idx}
+                  className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                    idx === currentSlide 
+                      ? 'opacity-100 scale-100 z-10' 
+                      : 'opacity-0 scale-105 pointer-events-none z-0'
+                  }`}
+                >
+                  <img 
+                    src={slide.image} 
+                    alt={slide.title}
+                    className="w-full h-full object-cover object-center"
+                  />
 
-              {/* Floating Badge */}
-              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-stone-200">
-                <div className="flex items-center justify-between mb-1">
-                  <div className="flex items-center gap-2 text-[#404D3C] text-xs font-bold uppercase tracking-wider">
-                    <BookMarked className="w-4 h-4" />
-                    <span>Curated by Amir</span>
+                  {/* Gradient shadow for text clarity */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-stone-900/10" />
+
+                  {/* Top Floating Badge */}
+                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md text-[#404D3C] px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-md border border-stone-200">
+                    <BookMarked className="w-3.5 h-3.5 text-[#404D3C]" />
+                    <span>{slide.tag}</span>
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#EBF0E9] text-[#404D3C]">
-                    Persian & International
-                  </span>
+
+                  {/* Bottom Caption Overlay */}
+                  <div className="absolute bottom-0 inset-x-0 p-6 text-white">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-amber-300">
+                        Curated by Amir • Slide {idx + 1} of {bookSlides.length}
+                      </span>
+                      <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md bg-[#404D3C]/90 text-white">
+                        In Front of Coffee Bar
+                      </span>
+                    </div>
+
+                    <h3 className="font-serif text-xl sm:text-2xl font-bold leading-snug">
+                      {slide.title}
+                    </h3>
+                    <p className="text-xs text-stone-200 mt-1 font-light line-clamp-2">
+                      {slide.desc}
+                    </p>
+                  </div>
                 </div>
-                <p className="font-serif italic text-sm text-stone-800">
-                  “Take a book, trade a book, or stay awhile with a freshly poured flat white.”
-                </p>
+              ))}
+
+              {/* Prev / Next Navigation Arrows */}
+              <button
+                type="button"
+                onClick={prevSlide}
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer hover:scale-105"
+                aria-label="Previous Book Cafe Photo"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              <button
+                type="button"
+                onClick={nextSlide}
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer hover:scale-105"
+                aria-label="Next Book Cafe Photo"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+
+              {/* Dot Indicators */}
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
+                {bookSlides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setCurrentSlide(idx)}
+                    className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                      idx === currentSlide
+                        ? 'w-7 bg-amber-300 shadow'
+                        : 'w-2 bg-white/50 hover:bg-white/80'
+                    }`}
+                    aria-label={`Go to book cafe slide ${idx + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>

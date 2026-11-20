@@ -13,6 +13,8 @@ import dishSpread from './dish-spread.jpg';
 import cabinetFocaccias from './cabinet-focaccias.jpg';
 import cabinetSweets from './cabinet-sweets.jpg';
 import bookCafeNook from './book-cafe-nook.jpg';
+import bookCornerCoffee from './book-corner-coffee.jpg';
+import bookReadingTable from './book-reading-table.jpg';
 
 export {
   takeawayCup,
@@ -29,5 +31,7 @@ export {
   dishSpread,
   cabinetFocaccias,
   cabinetSweets,
-  bookCafeNook
+  bookCafeNook,
+  bookCornerCoffee,
+  bookReadingTable
 };

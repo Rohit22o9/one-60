@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   ArrowRight, 
   MapPin, 
@@ -7,13 +7,80 @@ import {
   Briefcase, 
   UtensilsCrossed, 
   BookOpen,
-  Sparkles
+  Sparkles,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
-import { CAFE_INFO } from '../data/cafeData';
 import Logo from './Logo';
-import { takeawayCup, dishSpread } from '../assets/photos';
+import { 
+  takeawayCup, 
+  coffeeBarista, 
+  dishSpread, 
+  cateringSliders, 
+  cabinetFocaccias, 
+  icedCoffee 
+} from '../assets/photos';
 
 export default function Hero({ onOpenCatering, onOpenKitchen }) {
+  const slides = [
+    {
+      image: takeawayCup,
+      tag: "Signature Morning Ritual",
+      title: "Fresh Roasted Coffee & Artisan Bakery",
+      desc: "160 Murray Street Mall • Colombian Roast & Warm Sibling Hospitality"
+    },
+    {
+      image: coffeeBarista,
+      tag: "Barista Espresso Craft",
+      title: "Commercial Espresso Bar & Latte Art",
+      desc: "Calibrated daily with local WA dairy & MilkLab alternative milks"
+    },
+    {
+      image: dishSpread,
+      tag: "All-Day Kitchen Menu",
+      title: "Fresh Sourdough, Poached Eggs & Bowls",
+      desc: "Crafted fresh in-house using premium Western Australian produce"
+    },
+    {
+      image: cateringSliders,
+      tag: "CBD Corporate Catering",
+      title: "Brioche & Activated Charcoal Slider Boxes",
+      desc: "Delivered 7 days a week across Perth CBD with 3 days notice"
+    },
+    {
+      image: cabinetFocaccias,
+      tag: "Fresh Daily Display Cabinet",
+      title: "Artisan Paninis & Rosemary Focaccias",
+      desc: "Freshly baked each morning: ready to grab or toast warm"
+    },
+    {
+      image: icedCoffee,
+      tag: "Single Origin Cold Bar",
+      title: "Signature Iced Coffee with Orange Twist",
+      desc: "Crisp notes of jasmine, stone fruit & dark cocoa over ice"
+    }
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-advance slideshow
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused, slides.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-[#FAF8F5] via-[#F4EFEB] to-[#FAF8F5]">
       
@@ -61,7 +128,7 @@ export default function Hero({ onOpenCatering, onOpenKitchen }) {
               Founded by siblings Shabnam and Shaun, ONE60 is Perth CBD’s vibrant sanctuary. Inspired by our Colombian coffee feature wall, we celebrate the complete journey from blossoms and beans to your morning cup. Enjoy artisan focaccias, the cozy Book Café corner, and corporate catering across Perth.
             </p>
 
-            {/* Action Buttons (Table Reservation REMOVED) */}
+            {/* Action Buttons */}
             <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
               <a
                 href="#menu"
@@ -73,7 +140,7 @@ export default function Hero({ onOpenCatering, onOpenKitchen }) {
 
               <button
                 onClick={onOpenCatering}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white border border-stone-300 text-stone-800 text-sm font-semibold tracking-wide uppercase hover:bg-stone-50 hover:border-stone-400 shadow-xs transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white border border-stone-300 text-stone-800 text-sm font-semibold tracking-wide uppercase hover:bg-stone-50 hover:border-stone-400 shadow-xs transition-all duration-300 cursor-pointer"
               >
                 <Briefcase className="w-4 h-4 text-[#404D3C]" />
                 <span>Corporate Catering</span>
@@ -136,46 +203,111 @@ export default function Hero({ onOpenCatering, onOpenKitchen }) {
 
           </div>
 
-          {/* Right Column: Visual Collage with Real Photo */}
+          {/* Right Column: INTERACTIVE HERO SLIDESHOW (MULTIPLE REAL PHOTOS) */}
           <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
+            <div 
+              className="relative mx-auto max-w-md lg:max-w-none"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
               
-              {/* Main Feature Image - Real Takeaway Cup & Croissant */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] bg-stone-200">
-                <img 
-                  src={takeawayCup} 
-                  alt="Cafe One 60 Perth Signature Coffee Cup & Croissant"
-                  className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
-                />
+              {/* Slideshow Container */}
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] bg-stone-900">
                 
-                {/* Floating Tag */}
-                <div className="absolute top-4 left-4 bg-[#404D3C]/90 backdrop-blur-md text-white px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-lg border border-white/20">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                  <span>Fresh Roasted Daily</span>
+                {/* Slides mapping */}
+                {slides.map((slide, idx) => (
+                  <div
+                    key={idx}
+                    className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                      idx === currentSlide 
+                        ? 'opacity-100 scale-100 z-10' 
+                        : 'opacity-0 scale-105 pointer-events-none z-0'
+                    }`}
+                  >
+                    <img 
+                      src={slide.image} 
+                      alt={slide.title}
+                      className="w-full h-full object-cover object-center"
+                    />
+
+                    {/* Dark gradient overlay for typography readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-stone-900/10" />
+
+                    {/* Top Floating Badge */}
+                    <div className="absolute top-4 left-4 bg-[#404D3C]/90 backdrop-blur-md text-white px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-lg border border-white/20">
+                      <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                      <span>{slide.tag}</span>
+                    </div>
+
+                    {/* Bottom Caption Overlay */}
+                    <div className="absolute bottom-0 inset-x-0 p-6 text-white">
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-amber-300 mb-1">
+                        160 Murray St Mall • Slide {idx + 1} of {slides.length}
+                      </div>
+                      <h3 className="font-serif text-xl sm:text-2xl font-bold leading-snug">
+                        {slide.title}
+                      </h3>
+                      <p className="text-xs text-stone-300 mt-1 font-light line-clamp-2">
+                        {slide.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+
+                {/* Left/Right Arrow Navigation Controls */}
+                <button
+                  type="button"
+                  onClick={prevSlide}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer hover:scale-105"
+                  aria-label="Previous Slide"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={nextSlide}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer hover:scale-105"
+                  aria-label="Next Slide"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+
+                {/* Bottom Slide Indicators / Dots */}
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
+                  {slides.map((_, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setCurrentSlide(idx)}
+                      className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                        idx === currentSlide
+                          ? 'w-7 bg-amber-300 shadow'
+                          : 'w-2 bg-white/50 hover:bg-white/80'
+                      }`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
                 </div>
 
-                {/* Bottom Story Overlay */}
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-stone-950/80 via-stone-950/40 to-transparent p-6 text-white">
-                  <div className="text-xs font-bold uppercase tracking-wider text-amber-200 mb-1">
-                    160 Murray Street Mall, Perth CBD
-                  </div>
-                  <p className="font-serif text-lg font-medium">
-                    Shabnam & Shaun’s Warm Perth Meeting Point
-                  </p>
-                  <p className="text-xs text-stone-300 mt-1">
-                    Open 7 Days • From 7:30 AM weekdays
-                  </p>
-                </div>
               </div>
 
-              {/* Secondary Floating Mini Card */}
-              <div className="hidden sm:flex absolute -bottom-6 -left-8 p-3.5 rounded-2xl bg-white border border-stone-200 shadow-xl items-center gap-3 max-w-xs animate-bounce-slight">
-                <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 border border-stone-200">
-                  <img src={dishSpread} alt="Breakfast dish" className="w-full h-full object-cover" />
+              {/* Secondary Floating Mini Card with Live Active Slide Info */}
+              <div className="hidden sm:flex absolute -bottom-5 -left-6 p-3 rounded-2xl bg-white border border-stone-200 shadow-xl items-center gap-3 max-w-xs z-30">
+                <div className="w-11 h-11 rounded-xl overflow-hidden shrink-0 border border-stone-200 bg-stone-100">
+                  <img 
+                    src={slides[currentSlide].image} 
+                    alt="Active thumbnail" 
+                    className="w-full h-full object-cover" 
+                  />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-stone-900">Artisan Focaccias & Food</div>
-                  <div className="text-[11px] text-[#404D3C] font-semibold">Freshly baked in-house</div>
+                  <div className="text-xs font-bold text-stone-900 line-clamp-1">
+                    {slides[currentSlide].title}
+                  </div>
+                  <div className="text-[11px] text-[#404D3C] font-semibold">
+                    {slides[currentSlide].tag}
+                  </div>
                 </div>
               </div>
 
