@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   ArrowRight, 
   MapPin, 
@@ -29,54 +29,54 @@ export default function Hero({ onOpenCatering, onOpenKitchen }) {
       image: takeawayCup,
       pillName: "Morning Brew",
       tag: "Signature Morning Ritual",
-      title: "Fresh Roasted Coffee & Artisan Bakery",
-      desc: "160 Murray Street Mall • Colombian Roast & Warm Sibling Hospitality",
-      ctaText: "Explore Coffee Menu",
+      title: "Fresh Roasted Coffee & Bakery",
+      desc: "160 Murray Street Mall • Colombian Roast & Sibling Warmth",
+      ctaText: "Coffee Menu",
       ctaHref: "#menu"
     },
     {
       image: coffeeBarista,
       pillName: "Barista Craft",
       tag: "Barista Extraction",
-      title: "Commercial Espresso Bar & Latte Art",
-      desc: "Calibrated daily with local WA dairy & MilkLab plant milks",
-      ctaText: "Our Coffee Story",
+      title: "Commercial Espresso Bar",
+      desc: "Calibrated daily with WA dairy & MilkLab alternative milks",
+      ctaText: "Coffee Story",
       ctaHref: "#coffee"
     },
     {
       image: dishSpread,
       pillName: "Artisan Brunch",
       tag: "All-Day Kitchen Menu",
-      title: "Fresh Sourdough, Poached Eggs & Bowls",
+      title: "Fresh Sourdough & Brunch Feasts",
       desc: "Crafted fresh in-house using premium Western Australian produce",
-      ctaText: "View Kitchen Dishes",
+      ctaText: "View Dishes",
       ctaHref: "#menu"
     },
     {
       image: cateringSliders,
       pillName: "Catering Boxes",
       tag: "CBD Corporate Catering",
-      title: "Brioche & Activated Charcoal Slider Boxes",
-      desc: "Delivered 7 days a week across Perth CBD with 3 days notice",
-      ctaText: "Corporate Platters",
+      title: "Brioche & Charcoal Slider Boxes",
+      desc: "Delivered 7 days a week across Perth CBD (3 days notice)",
+      ctaText: "Platters",
       ctaHref: "#catering"
     },
     {
       image: cabinetFocaccias,
       pillName: "Daily Cabinet",
       tag: "Fresh Daily Display Cabinet",
-      title: "Artisan Paninis & Rosemary Focaccias",
+      title: "Paninis & Rosemary Focaccias",
       desc: "Freshly baked each morning: ready to grab or toast warm",
-      ctaText: "Cabinet Selections",
+      ctaText: "Cabinet",
       ctaHref: "#menu"
     },
     {
       image: icedCoffee,
       pillName: "Cold Bar",
       tag: "Single Origin Cold Bar",
-      title: "Signature Iced Coffee with Orange Twist",
-      desc: "Crisp notes of jasmine, stone fruit & dark cocoa over ice",
-      ctaText: "Cold Drip Brews",
+      title: "Signature Iced Coffee & Cold Brew",
+      desc: "Crisp notes of jasmine, stone fruit & orange peel over ice",
+      ctaText: "Cold Drip",
       ctaHref: "#coffee"
     }
   ];
@@ -85,8 +85,8 @@ export default function Hero({ onOpenCatering, onOpenKitchen }) {
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
 
-  const SLIDE_DURATION = 4500; // ms
-  const TICK_INTERVAL = 50; // ms
+  const SLIDE_DURATION = 4500;
+  const TICK_INTERVAL = 50;
 
   // Smooth progress bar and auto-advance timer
   useEffect(() => {
@@ -126,20 +126,20 @@ export default function Hero({ onOpenCatering, onOpenKitchen }) {
   };
 
   return (
-    <section className="relative pt-36 pb-24 md:pt-44 md:pb-32 overflow-hidden bg-gradient-to-b from-[#FAF8F5] via-[#F4EFEB] to-[#FAF8F5]">
+    <section className="relative pt-24 pb-8 sm:pt-28 sm:pb-10 lg:pt-28 lg:pb-10 min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-70px)] flex flex-col justify-center overflow-hidden bg-gradient-to-b from-[#FAF8F5] via-[#F4EFEB] to-[#FAF8F5]">
       
       {/* Background Decorative Accents */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[#404D3C]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-0 -ml-20 w-80 h-80 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-[#404D3C]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-0 -ml-20 w-72 h-72 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-8 lg:px-12 relative z-10 my-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left Column: Editorial Headline & Actions */}
-          <div className="lg:col-span-6 space-y-7">
+          {/* Left Column: Editorial Headline & Actions (Compact fit above fold) */}
+          <div className="lg:col-span-6 space-y-4 sm:space-y-5">
             
             {/* Location Pill & Operating Status */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/90 border border-stone-200/80 shadow-xs text-xs font-medium text-stone-700 backdrop-blur-xs">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/95 border border-stone-200/90 shadow-2xs text-[11px] font-medium text-stone-700 backdrop-blur-xs">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -147,20 +147,20 @@ export default function Hero({ onOpenCatering, onOpenKitchen }) {
               <span className="font-semibold text-[#404D3C]">Where Good Vibes Brew</span>
               <span className="text-stone-300">|</span>
               <span className="flex items-center gap-1 text-stone-600">
-                <MapPin className="w-3.5 h-3.5 text-[#404D3C]" />
+                <MapPin className="w-3 h-3 text-[#404D3C]" />
                 160 Murray Street Mall, Perth CBD
               </span>
             </div>
 
             {/* Main Headline with Official Brand */}
             <div>
-              <div className="mb-2">
+              <div className="mb-1.5">
                 <Logo 
                   variant="dark" 
-                  className="h-10 sm:h-12 w-auto mb-3" 
+                  className="h-8 sm:h-9 w-auto mb-2" 
                 />
               </div>
-              <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-[#181513] leading-[1.12]">
+              <h1 className="font-serif text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-medium tracking-tight text-[#181513] leading-[1.12]">
                 Specialty Coffee. <br />
                 <span className="italic font-normal text-[#404D3C]">Savor the Flavor,</span> <br />
                 Share the Love.
@@ -168,66 +168,66 @@ export default function Hero({ onOpenCatering, onOpenKitchen }) {
             </div>
 
             {/* Sub-paragraph */}
-            <p className="text-base sm:text-lg text-stone-600 max-w-2xl font-light leading-relaxed">
+            <p className="text-xs sm:text-sm text-stone-600 max-w-xl font-light leading-relaxed">
               Founded by siblings Shabnam and Shaun, ONE60 is Perth CBD’s vibrant sanctuary. Inspired by our Colombian coffee feature wall, we celebrate the complete journey from blossoms and beans to your morning cup. Enjoy artisan focaccias, the cozy Book Café corner, and corporate catering across Perth.
             </p>
 
             {/* Action Buttons */}
-            <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
+            <div className="pt-1 flex flex-wrap items-center gap-2.5 sm:gap-3.5">
               <a
                 href="#menu"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#404D3C] text-white text-sm font-semibold tracking-wide uppercase hover:bg-[#2f392c] shadow-md hover:shadow-xl transition-all duration-300"
+                className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#404D3C] text-white text-xs sm:text-sm font-semibold tracking-wide uppercase hover:bg-[#2f392c] shadow-md hover:shadow-xl transition-all duration-300"
               >
                 <span>Explore Daily Menu</span>
-                <ArrowRight className="w-4 h-4 text-amber-200" />
+                <ArrowRight className="w-3.5 h-3.5 text-amber-200" />
               </a>
 
               <button
                 onClick={onOpenCatering}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white border border-stone-300 text-stone-800 text-sm font-semibold tracking-wide uppercase hover:bg-stone-50 hover:border-stone-400 shadow-xs transition-all duration-300 cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 sm:px-5 sm:py-3 rounded-full bg-white border border-stone-300 text-stone-800 text-xs sm:text-sm font-semibold tracking-wide uppercase hover:bg-stone-50 hover:border-stone-400 shadow-xs transition-all duration-300 cursor-pointer"
               >
-                <Briefcase className="w-4 h-4 text-[#404D3C]" />
+                <Briefcase className="w-3.5 h-3.5 text-[#404D3C]" />
                 <span>Corporate Catering</span>
               </button>
 
               <a
                 href="#coffee"
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-[#EBF0E9] border border-[#C5D5C2] text-[#344431] text-sm font-semibold tracking-wide uppercase hover:bg-[#dfe8dc] transition-all duration-300"
+                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 sm:px-4 sm:py-3 rounded-full bg-[#EBF0E9] border border-[#C5D5C2] text-[#344431] text-xs sm:text-sm font-semibold tracking-wide uppercase hover:bg-[#dfe8dc] transition-all duration-300"
               >
-                <Coffee className="w-4 h-4" />
-                <span>Our Coffee Story</span>
+                <Coffee className="w-3.5 h-3.5" />
+                <span>Coffee Story</span>
               </a>
             </div>
 
-            {/* Highlight Badges / Quick Trust Factors */}
-            <div className="pt-6 border-t border-stone-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-stone-700">
+            {/* Highlight Badges / Quick Trust Factors (Compact) */}
+            <div className="pt-4 border-t border-stone-200/80 grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-stone-700">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center text-amber-700 shrink-0">
-                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                <div className="w-7 h-7 rounded-full bg-amber-50 flex items-center justify-center text-amber-700 shrink-0">
+                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-stone-900">4.9 / 5.0 Google</div>
-                  <div className="text-[11px] text-stone-500">Perth Reviews</div>
+                  <div className="text-xs font-bold text-stone-900 leading-tight">4.9 / 5.0</div>
+                  <div className="text-[10px] text-stone-500">Google Reviews</div>
                 </div>
               </div>
 
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-[#EBF0E9] flex items-center justify-center text-[#404D3C] shrink-0">
-                  <BookOpen className="w-4 h-4 text-[#404D3C]" />
+                <div className="w-7 h-7 rounded-full bg-[#EBF0E9] flex items-center justify-center text-[#404D3C] shrink-0">
+                  <BookOpen className="w-3.5 h-3.5 text-[#404D3C]" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-stone-900">The Book Café</div>
-                  <div className="text-[11px] text-stone-500">Curated by Amir</div>
+                  <div className="text-xs font-bold text-stone-900 leading-tight">The Book Café</div>
+                  <div className="text-[10px] text-stone-500">Curated by Amir</div>
                 </div>
               </div>
 
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-700 shrink-0">
-                  <Briefcase className="w-4 h-4 text-emerald-600" />
+                <div className="w-7 h-7 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-700 shrink-0">
+                  <Briefcase className="w-3.5 h-3.5 text-emerald-600" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-stone-900">Catering 7 Days</div>
-                  <div className="text-[11px] text-stone-500">3 Days Notice</div>
+                  <div className="text-xs font-bold text-stone-900 leading-tight">Catering 7 Days</div>
+                  <div className="text-[10px] text-stone-500">3 Days Notice</div>
                 </div>
               </div>
 
@@ -235,29 +235,29 @@ export default function Hero({ onOpenCatering, onOpenKitchen }) {
                 onClick={onOpenKitchen}
                 className="flex items-center gap-2 cursor-pointer group"
               >
-                <div className="w-8 h-8 rounded-full bg-purple-50 group-hover:bg-purple-100 flex items-center justify-center text-purple-700 shrink-0 transition-colors">
-                  <UtensilsCrossed className="w-4 h-4 text-purple-600" />
+                <div className="w-7 h-7 rounded-full bg-purple-50 group-hover:bg-purple-100 flex items-center justify-center text-purple-700 shrink-0 transition-colors">
+                  <UtensilsCrossed className="w-3.5 h-3.5 text-purple-600" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-stone-900 group-hover:text-purple-700 transition-colors">Kitchen Facility</div>
-                  <div className="text-[11px] text-stone-500">Daily Drop Synergy</div>
+                  <div className="text-xs font-bold text-stone-900 group-hover:text-purple-700 transition-colors leading-tight">Kitchen Hire</div>
+                  <div className="text-[10px] text-stone-500">Daily Drop</div>
                 </div>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column: LUXURY DYNAMIC SHOWCASE SLIDESHOW */}
+          {/* Right Column: COMPACT FIT SLIDESHOW (Fits 100% on 1st screen) */}
           <div className="lg:col-span-6 relative">
-            <div className="relative mx-auto max-w-lg lg:max-w-none">
+            <div className="relative mx-auto max-w-md lg:max-w-lg">
               
-              {/* Decorative Luxury Frame Accents */}
-              <div className="absolute -top-3 -right-3 w-16 h-16 border-t-2 border-r-2 border-[#C5A059] rounded-tr-3xl pointer-events-none z-20" />
-              <div className="absolute -bottom-3 -left-3 w-16 h-16 border-b-2 border-l-2 border-[#C5A059] rounded-bl-3xl pointer-events-none z-20" />
+              {/* Decorative Corner Accents */}
+              <div className="absolute -top-2.5 -right-2.5 w-12 h-12 border-t-2 border-r-2 border-[#C5A059] rounded-tr-2xl pointer-events-none z-20" />
+              <div className="absolute -bottom-2.5 -left-2.5 w-12 h-12 border-b-2 border-l-2 border-[#C5A059] rounded-bl-2xl pointer-events-none z-20" />
 
-              {/* Main Showcase Viewport */}
+              {/* Main Showcase Viewport: Compact aspect-[16/11] with max-height constraint */}
               <div 
-                className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] bg-stone-950 group"
+                className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[16/11] max-h-[380px] sm:max-h-[410px] lg:max-h-[430px] w-full bg-stone-950 group"
                 onMouseEnter={() => setIsPlaying(false)}
                 onMouseLeave={() => setIsPlaying(true)}
               >
@@ -294,16 +294,16 @@ export default function Hero({ onOpenCatering, onOpenKitchen }) {
                 </div>
 
                 {/* Glass Header Bar: Counter, Tag & Play/Pause */}
-                <div className="absolute top-4 inset-x-4 z-30 flex items-center justify-between pointer-events-auto">
+                <div className="absolute top-3.5 inset-x-3.5 z-30 flex items-center justify-between pointer-events-auto">
                   <div className="flex items-center gap-2">
-                    <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-serif font-bold tracking-wider border border-white/20 flex items-center gap-1.5 shadow-lg">
+                    <span className="px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-serif font-bold tracking-wider border border-white/20 flex items-center gap-1 shadow-md">
                       <span className="text-[#C5A059]">0{currentSlide + 1}</span>
                       <span className="text-stone-400">/</span>
                       <span className="text-stone-300">0{slides.length}</span>
                     </span>
 
-                    <span className="hidden sm:inline-flex px-3 py-1 rounded-full bg-[#404D3C]/90 backdrop-blur-md text-emerald-200 text-[11px] font-semibold uppercase tracking-wider border border-white/20 items-center gap-1.5 shadow-lg">
-                      <Sparkles className="w-3 h-3 text-amber-300 animate-pulse" />
+                    <span className="inline-flex px-2.5 py-0.5 rounded-full bg-[#404D3C]/90 backdrop-blur-md text-emerald-200 text-[10px] font-semibold uppercase tracking-wider border border-white/20 items-center gap-1 shadow-md">
+                      <Sparkles className="w-2.5 h-2.5 text-amber-300 animate-pulse" />
                       <span>{slides[currentSlide].tag}</span>
                     </span>
                   </div>
@@ -311,11 +311,11 @@ export default function Hero({ onOpenCatering, onOpenKitchen }) {
                   <button
                     type="button"
                     onClick={togglePlayPause}
-                    className="p-2 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md text-white border border-white/20 shadow-lg transition-transform hover:scale-110 cursor-pointer"
+                    className="p-1.5 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md text-white border border-white/20 shadow-md transition-transform hover:scale-110 cursor-pointer"
                     title={isPlaying ? "Pause Slideshow" : "Resume Slideshow"}
                     aria-label={isPlaying ? "Pause Slideshow" : "Resume Slideshow"}
                   >
-                    {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 fill-current" />}
+                    {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3 fill-current" />}
                   </button>
                 </div>
 
@@ -323,87 +323,80 @@ export default function Hero({ onOpenCatering, onOpenKitchen }) {
                 <button
                   type="button"
                   onClick={handlePrev}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/50 hover:bg-[#404D3C] backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer hover:scale-110 shadow-xl"
+                  className="absolute left-2.5 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-black/50 hover:bg-[#404D3C] backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer hover:scale-110 shadow-lg"
                   aria-label="Previous Slide"
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  <ChevronLeft className="w-4 h-4" />
                 </button>
 
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/50 hover:bg-[#404D3C] backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer hover:scale-110 shadow-xl"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-black/50 hover:bg-[#404D3C] backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer hover:scale-110 shadow-lg"
                   aria-label="Next Slide"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-4 h-4" />
                 </button>
 
-                {/* Dynamic Glass Caption Overlay (Bottom) */}
-                <div className="absolute bottom-4 inset-x-4 z-30 pointer-events-auto">
-                  <div className="p-4 sm:p-5 rounded-2xl bg-black/60 backdrop-blur-lg border border-white/20 shadow-2xl text-white transition-all">
-                    
-                    <div className="flex items-center justify-between text-[11px] uppercase tracking-wider text-amber-300 mb-1 font-semibold">
-                      <span>160 Murray St Mall Perth</span>
-                      <span className="text-stone-300 normal-case font-light text-[11px]">Hover to pause</span>
+                {/* Compact Glass Caption Overlay (Bottom) */}
+                <div className="absolute bottom-3 inset-x-3 z-30 pointer-events-auto">
+                  <div className="p-3 sm:p-3.5 rounded-2xl bg-black/65 backdrop-blur-md border border-white/20 shadow-xl text-white">
+                    <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-amber-300 mb-0.5 font-semibold">
+                      <span>160 Murray St Mall</span>
+                      <span className="text-stone-300 normal-case font-light text-[10px]">Hover to pause</span>
                     </div>
 
-                    <h3 className="font-serif text-lg sm:text-2xl font-bold leading-tight text-white mb-1">
+                    <h3 className="font-serif text-base sm:text-lg font-bold leading-tight text-white mb-0.5">
                       {slides[currentSlide].title}
                     </h3>
 
-                    <p className="text-xs text-stone-300 font-light line-clamp-2 mb-3">
+                    <p className="text-[11px] text-stone-300 font-light line-clamp-1 mb-2">
                       {slides[currentSlide].desc}
                     </p>
 
-                    <div className="flex items-center justify-between pt-2 border-t border-white/10">
+                    <div className="flex items-center justify-between pt-1.5 border-t border-white/10">
                       <a
                         href={slides[currentSlide].ctaHref}
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-300 hover:text-white transition-colors group/link"
+                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-300 hover:text-white transition-colors group/link"
                       >
                         <span>{slides[currentSlide].ctaText}</span>
-                        <ArrowRight className="w-3.5 h-3.5 transform group-hover/link:translate-x-1 transition-transform" />
+                        <ArrowRight className="w-3 h-3 transform group-hover/link:translate-x-1 transition-transform" />
                       </a>
 
-                      <span className="text-[10px] text-stone-400 font-mono">
+                      <span className="text-[9px] text-stone-400 font-mono">
                         Perth CBD
                       </span>
                     </div>
-
                   </div>
                 </div>
 
               </div>
 
-              {/* INTERACTIVE CLICKABLE THUMBNAIL STRIP */}
-              <div className="mt-4 pt-1">
-                <div className="flex items-center justify-between gap-2 overflow-x-auto pb-1 scrollbar-none">
+              {/* Compact Thumbnail Navigation Strip */}
+              <div className="mt-2.5">
+                <div className="flex items-center justify-between gap-1.5 overflow-x-auto pb-1 scrollbar-none">
                   {slides.map((slide, idx) => (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => handleSelectSlide(idx)}
-                      className={`flex items-center gap-2 px-2.5 py-1.5 rounded-xl border transition-all shrink-0 cursor-pointer text-left ${
+                      className={`flex items-center gap-1.5 px-2 py-1 rounded-xl border transition-all shrink-0 cursor-pointer text-left ${
                         idx === currentSlide
-                          ? 'bg-white border-[#404D3C] shadow-md ring-2 ring-[#404D3C]/30 scale-105'
+                          ? 'bg-white border-[#404D3C] shadow-sm ring-1 ring-[#404D3C]/30 scale-102'
                           : 'bg-white/70 border-stone-200/80 hover:bg-white hover:border-stone-300 opacity-70 hover:opacity-100'
                       }`}
                       aria-label={`Jump to slide ${idx + 1}: ${slide.pillName}`}
                     >
-                      <div className="w-7 h-7 rounded-lg overflow-hidden shrink-0 border border-stone-200 bg-stone-100">
+                      <div className="w-5 h-5 rounded-md overflow-hidden shrink-0 border border-stone-200 bg-stone-100">
                         <img 
                           src={slide.image} 
                           alt={slide.pillName} 
                           className="w-full h-full object-cover" 
                         />
                       </div>
-                      <div className="hidden sm:block">
-                        <div className="text-[10px] font-bold text-stone-900 leading-tight">
-                          0{idx + 1}
-                        </div>
-                        <div className="text-[9px] text-[#404D3C] font-semibold leading-tight whitespace-nowrap">
-                          {slide.pillName}
-                        </div>
-                      </div>
+                      <span className="text-[10px] font-bold text-stone-900 leading-none whitespace-nowrap">
+                        0{idx + 1} <span className="hidden sm:inline font-semibold text-[#404D3C]">{slide.pillName}</span>
+                      </span>
                     </button>
                   ))}
                 </div>
