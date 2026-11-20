@@ -35,5 +35,41 @@
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C26D43;
+  background: #404D3C;
+}
+
+/* Ken Burns Subtle Cinematic Zoom */
+@keyframes kenburns {
+  0% {
+    transform: scale(1.0) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.05) translate(-0.5%, -0.5%);
+  }
+  100% {
+    transform: scale(1.08) translate(0.5%, 0.5%);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburns 8s ease-in-out infinite alternate;
+}
+
+/* Shimmer Highlight */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.8) 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
 }

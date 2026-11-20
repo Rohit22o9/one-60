@@ -7,7 +7,9 @@ import {
   BookMarked, 
   Globe2, 
   ChevronLeft, 
-  ChevronRight 
+  ChevronRight,
+  Play,
+  Pause
 } from 'lucide-react';
 import { 
   bookCafeNook, 
@@ -24,30 +26,35 @@ export default function BookCafeSection() {
   const bookSlides = [
     {
       image: bookCafeNook,
+      pillName: "Reading Nook",
       tag: "Cultural Corner",
       title: "The Book Café Reading Nook",
       desc: "Located directly in front of the coffee machine for unhurried contemplation"
     },
     {
       image: coffeeBarista,
+      pillName: "Barista Craft",
       tag: "Coffee Meets Literature",
       title: "Fresh Espresso Brewing Steps Away",
       desc: "Shaun and Shabnam's baristas crafting your flat white while you read"
     },
     {
       image: bookReadingTable,
+      pillName: "Reading Table",
       tag: "Curated by Amir",
       title: "Persian Classics & Global Poetry",
       desc: "Hand-picked bilingual translations, contemporary fiction & philosophy"
     },
     {
       image: bookCornerCoffee,
-      tag: "CBD Reading Sanctuary",
+      pillName: "CBD Sanctuary",
+      tag: "Quiet CBD Sanctuary",
       title: "An Unhurried Murray St Mall Retreat",
       desc: "Wi-Fi, cozy seating, and welcoming conversations with our team"
     },
     {
       image: icedCoffee,
+      pillName: "Cold Brew Read",
       tag: "Afternoon Companion",
       title: "Signature Brews & Deep Stories",
       desc: "Trade a book from your collection on our community exchange shelf"
@@ -55,23 +62,47 @@ export default function BookCafeSection() {
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
 
-  // Auto-advance slideshow
+  const SLIDE_DURATION = 4500;
+  const TICK_INTERVAL = 50;
+
+  // Auto-advance slideshow with progress
   useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % bookSlides.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, [isPaused, bookSlides.length]);
+    if (!isPlaying) return;
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % bookSlides.length);
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        const next = prev + (TICK_INTERVAL / SLIDE_DURATION) * 100;
+        if (next >= 100) {
+          setCurrentSlide((curr) => (curr + 1) % bookSlides.length);
+          return 0;
+        }
+        return next;
+      });
+    }, TICK_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, [isPlaying, bookSlides.length]);
+
+  const handleSelectSlide = (idx) => {
+    setCurrentSlide(idx);
+    setProgress(0);
   };
 
-  const prevSlide = () => {
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % bookSlides.length);
+    setProgress(0);
+  };
+
+  const handlePrev = () => {
     setCurrentSlide((prev) => (prev - 1 + bookSlides.length) % bookSlides.length);
+    setProgress(0);
+  };
+
+  const togglePlayPause = () => {
+    setIsPlaying(!isPlaying);
   };
 
   const featuredBooks = [
@@ -136,94 +167,152 @@ export default function BookCafeSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-12">
           
-          {/* Left: INTERACTIVE ANIMATED SLIDESHOW WITH REAL PHOTOS */}
+          {/* Left: LUXURY INTERACTIVE SLIDESHOW (REAL PHOTOS) */}
           <div className="lg:col-span-6 relative">
-            <div 
-              className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/3] bg-stone-900"
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              {/* Slides mapping */}
-              {bookSlides.map((slide, idx) => (
-                <div
-                  key={idx}
-                  className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-                    idx === currentSlide 
-                      ? 'opacity-100 scale-100 z-10' 
-                      : 'opacity-0 scale-105 pointer-events-none z-0'
-                  }`}
-                >
-                  <img 
-                    src={slide.image} 
-                    alt={slide.title}
-                    className="w-full h-full object-cover object-center"
+            <div className="relative mx-auto max-w-lg lg:max-w-none">
+              
+              {/* Decorative Corner Accents */}
+              <div className="absolute -top-2.5 -left-2.5 w-12 h-12 border-t-2 border-l-2 border-[#404D3C] rounded-tl-2xl pointer-events-none z-20" />
+              <div className="absolute -bottom-2.5 -right-2.5 w-12 h-12 border-b-2 border-r-2 border-[#404D3C] rounded-br-2xl pointer-events-none z-20" />
+
+              {/* Viewport Frame */}
+              <div 
+                className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/3] bg-stone-950 group"
+                onMouseEnter={() => setIsPlaying(false)}
+                onMouseLeave={() => setIsPlaying(true)}
+              >
+                {/* Slides mapping with Ken Burns */}
+                {bookSlides.map((slide, idx) => (
+                  <div
+                    key={idx}
+                    className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                      idx === currentSlide 
+                        ? 'opacity-100 z-10 pointer-events-auto' 
+                        : 'opacity-0 z-0 pointer-events-none'
+                    }`}
+                  >
+                    <img 
+                      src={slide.image} 
+                      alt={slide.title}
+                      className={`w-full h-full object-cover object-center ${
+                        idx === currentSlide ? 'animate-kenburns' : ''
+                      }`}
+                    />
+
+                    {/* Gradient shadow */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/20" />
+                  </div>
+                ))}
+
+                {/* Top Glowing Progress Bar */}
+                <div className="absolute top-0 inset-x-0 h-1 bg-white/20 z-30">
+                  <div 
+                    className="h-full bg-gradient-to-r from-amber-400 to-emerald-400 transition-all ease-linear"
+                    style={{ width: `${progress}%` }}
                   />
+                </div>
 
-                  {/* Gradient shadow for text clarity */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-stone-900/10" />
+                {/* Top Glass Bar: Counter, Tag & Play/Pause */}
+                <div className="absolute top-4 inset-x-4 z-30 flex items-center justify-between pointer-events-auto">
+                  <div className="flex items-center gap-2">
+                    <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-serif font-bold tracking-wider border border-white/20 flex items-center gap-1.5 shadow-lg">
+                      <span className="text-[#C5A059]">0{currentSlide + 1}</span>
+                      <span className="text-stone-400">/</span>
+                      <span className="text-stone-300">0{bookSlides.length}</span>
+                    </span>
 
-                  {/* Top Floating Badge */}
-                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md text-[#404D3C] px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-md border border-stone-200">
-                    <BookMarked className="w-3.5 h-3.5 text-[#404D3C]" />
-                    <span>{slide.tag}</span>
+                    <span className="px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#404D3C] text-[11px] font-semibold uppercase tracking-wider border border-stone-200 shadow-md flex items-center gap-1.5">
+                      <BookMarked className="w-3 h-3 text-[#404D3C]" />
+                      <span>{bookSlides[currentSlide].tag}</span>
+                    </span>
                   </div>
 
-                  {/* Bottom Caption Overlay */}
-                  <div className="absolute bottom-0 inset-x-0 p-6 text-white">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-amber-300">
-                        Curated by Amir • Slide {idx + 1} of {bookSlides.length}
-                      </span>
-                      <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md bg-[#404D3C]/90 text-white">
+                  <button
+                    type="button"
+                    onClick={togglePlayPause}
+                    className="p-2 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md text-white border border-white/20 shadow-lg transition-transform hover:scale-110 cursor-pointer"
+                    title={isPlaying ? "Pause Slideshow" : "Resume Slideshow"}
+                    aria-label={isPlaying ? "Pause Slideshow" : "Resume Slideshow"}
+                  >
+                    {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 fill-current" />}
+                  </button>
+                </div>
+
+                {/* Left/Right Floating Navigation Chevrons */}
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-black/50 hover:bg-[#404D3C] backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer hover:scale-110 shadow-xl"
+                  aria-label="Previous Book Cafe Photo"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-black/50 hover:bg-[#404D3C] backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer hover:scale-110 shadow-xl"
+                  aria-label="Next Book Cafe Photo"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+
+                {/* Bottom Glass Caption Card */}
+                <div className="absolute bottom-4 inset-x-4 z-30 pointer-events-auto">
+                  <div className="p-4 rounded-2xl bg-black/65 backdrop-blur-lg border border-white/20 shadow-2xl text-white">
+                    <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-amber-300 mb-1">
+                      <span>Curated by Amir</span>
+                      <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-md bg-[#404D3C]/90 text-white">
                         In Front of Coffee Bar
                       </span>
                     </div>
 
-                    <h3 className="font-serif text-xl sm:text-2xl font-bold leading-snug">
-                      {slide.title}
+                    <h3 className="font-serif text-lg sm:text-xl font-bold leading-snug">
+                      {bookSlides[currentSlide].title}
                     </h3>
                     <p className="text-xs text-stone-200 mt-1 font-light line-clamp-2">
-                      {slide.desc}
+                      {bookSlides[currentSlide].desc}
                     </p>
                   </div>
                 </div>
-              ))}
 
-              {/* Prev / Next Navigation Arrows */}
-              <button
-                type="button"
-                onClick={prevSlide}
-                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer hover:scale-105"
-                aria-label="Previous Book Cafe Photo"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              <button
-                type="button"
-                onClick={nextSlide}
-                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 cursor-pointer hover:scale-105"
-                aria-label="Next Book Cafe Photo"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-
-              {/* Dot Indicators */}
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
-                {bookSlides.map((_, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => setCurrentSlide(idx)}
-                    className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                      idx === currentSlide
-                        ? 'w-7 bg-amber-300 shadow'
-                        : 'w-2 bg-white/50 hover:bg-white/80'
-                    }`}
-                    aria-label={`Go to book cafe slide ${idx + 1}`}
-                  />
-                ))}
               </div>
+
+              {/* Clickable Thumbnail Strip */}
+              <div className="mt-3.5">
+                <div className="flex items-center justify-between gap-2 overflow-x-auto pb-1 scrollbar-none">
+                  {bookSlides.map((slide, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => handleSelectSlide(idx)}
+                      className={`flex items-center gap-2 px-2.5 py-1.5 rounded-xl border transition-all shrink-0 cursor-pointer text-left ${
+                        idx === currentSlide
+                          ? 'bg-white border-[#404D3C] shadow-md ring-2 ring-[#404D3C]/30 scale-105'
+                          : 'bg-white/70 border-stone-200/80 hover:bg-white hover:border-stone-300 opacity-70 hover:opacity-100'
+                      }`}
+                      aria-label={`Jump to Book Cafe slide ${idx + 1}`}
+                    >
+                      <div className="w-7 h-7 rounded-lg overflow-hidden shrink-0 border border-stone-200 bg-stone-100">
+                        <img 
+                          src={slide.image} 
+                          alt={slide.pillName} 
+                          className="w-full h-full object-cover" 
+                        />
+                      </div>
+                      <div className="hidden sm:block">
+                        <div className="text-[10px] font-bold text-stone-900 leading-tight">
+                          0{idx + 1}
+                        </div>
+                        <div className="text-[9px] text-[#404D3C] font-semibold leading-tight whitespace-nowrap">
+                          {slide.pillName}
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
             </div>
           </div>
 
