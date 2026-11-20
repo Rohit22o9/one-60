@@ -1,3 +1,21 @@
+import {
+  takeawayCup,
+  cateringQuad,
+  cateringSliders,
+  cateringWraps,
+  cateringFocaccia,
+  cateringPastry,
+  coffeeBarista,
+  icedCoffee,
+  dishEggsBenedict,
+  dishSmashedAvo,
+  dishHalloumi,
+  dishSpread,
+  cabinetFocaccias,
+  cabinetSweets,
+  bookCafeNook
+} from '../assets/photos';
+
 export const CAFE_INFO = {
   name: "Cafe One 60",
   shortName: "ONE60",
@@ -5,6 +23,7 @@ export const CAFE_INFO = {
   secondaryTagline: "Savor the Flavor, Share the Love",
   address: "160 Murray Street Mall, Perth WA 6000",
   phone: "+61 (08) 9221 1600",
+  mobilePhone: "0400 160 160",
   email: "info@one60cafe.com.au",
   cateringEmail: "catering@one60cafe.com.au",
   kitchenHireEmail: "kitchen@one60cafe.com.au",
@@ -13,25 +32,25 @@ export const CAFE_INFO = {
     { days: "Monday – Thursday", time: "7:30 AM – 5:00 PM" },
     { days: "Friday", time: "7:30 AM – 6:00 PM", note: "Extended CBD Hours" },
     { days: "Saturday", time: "7:30 AM – 5:00 PM" },
-    { days: "Sunday", time: "8:30 AM – 5:00 PM" },
+    { days: "Sunday", time: "8:30 AM – 5:00 PM", note: "Open 7 Days & Catering Every Day" },
   ],
   features: [
-    "Australian Roasted Specialty Coffee (Melbourne Roasted, 100% Perth Warmth)",
-    "Book Café — A Warm Cultural Corner for Book Lovers",
-    "Sibling Duo Founders Shabnam & Shaun",
-    "Gourmet Paninis, Artisan Focaccias & French Crêpes",
-    "CBD Corporate Office Catering & Boardroom Platters",
+    "Colombian Coffee Heritage & Feature Wall Story (Blossom to Roast)",
+    "Specialty Beans for Hot Coffee, Iced Coffee & Cold Brew",
+    "Sibling Duo Founders Shabnam & Shaun (Persian & International Warmth)",
+    "The Book Café — Curated by Amir (Persian, Bilingual & International)",
+    "CBD Corporate Office Catering (Delivered 7 Days with 3 Days Notice)",
     "Licensed Commercial Kitchen Facility & Hire (with The Daily Drop)"
   ]
 };
 
 export const MENU_CATEGORIES = [
   { id: "all", label: "Full Menu" },
+  { id: "coffee", label: "Specialty Coffee & Brews" },
   { id: "breakfast", label: "Breakfast & Brunch" },
   { id: "lunch", label: "Focaccias, Paninis & Wraps" },
-  { id: "salads", label: "Garden Fresh Salad Bowls" },
-  { id: "sweets", label: "Muffins, Scrolls & Crêpes" },
-  { id: "coffee", label: "Specialty Coffee & Brews" },
+  { id: "sweets", label: "Muffins, Pastries & Sweets" },
+  { id: "salads", label: "Fresh Garden Bowls" },
 ];
 
 export const DIETARY_FILTERS = [
@@ -49,19 +68,30 @@ export const MENU_ITEMS = [
     category: "breakfast",
     price: 24.50,
     dietary: ["GF Available"],
-    description: "Poached free-range eggs, cider-braised pork belly or Tasmanian smoked salmon, house yuzu-infused hollandaise, toasted brioche with fresh microgreens.",
-    image: "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?auto=format&fit=crop&w=800&q=80",
+    description: "Poached free-range eggs, cider-braised pork belly or Tasmanian smoked salmon, house yuzu hollandaise, toasted brioche with microgreens.",
+    image: dishEggsBenedict,
     popular: true,
     prepTime: "12-15 min"
   },
   {
     id: "m2",
-    name: "Perth Truffle Smashed Avocado",
+    name: "Perth Smashed Avocado & Feta",
     category: "breakfast",
     price: 22.00,
     dietary: ["V", "DF Available", "GF Available"],
-    description: "Crushed Hass avocado on toasted Margaret River sourdough, Danish whipped feta, heirloom cherry tomatoes, dukkah crunch, pomegranate pearls, cold-pressed truffle oil.",
-    image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80",
+    description: "Crushed Hass avocado on toasted Margaret River sourdough, Danish whipped feta, heirloom cherry tomatoes, dukkah crunch, pomegranate pearls.",
+    image: dishSmashedAvo,
+    popular: true,
+    prepTime: "10 min"
+  },
+  {
+    id: "m_halloumi",
+    name: "Grilled Halloumi & Poached Eggs Sourdough",
+    category: "breakfast",
+    price: 23.00,
+    dietary: ["V", "GF Available"],
+    description: "Golden grilled halloumi steaks, wilted baby spinach, two soft poached eggs, house tomato relish and balsamic drizzle on artisan sourdough.",
+    image: dishHalloumi,
     popular: true,
     prepTime: "10 min"
   },
@@ -72,9 +102,9 @@ export const MENU_ITEMS = [
     price: 18.50,
     dietary: [],
     description: "Roasted tender turkey breast, house basil walnut pesto, sundried tomatoes, melted Swiss cheese, fresh baby spinach on artisan herb focaccia.",
-    image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80",
+    image: cabinetFocaccias,
     popular: true,
-    prepTime: "8 min"
+    prepTime: "5-8 min"
   },
   {
     id: "m4",
@@ -83,108 +113,139 @@ export const MENU_ITEMS = [
     price: 18.50,
     dietary: [],
     description: "Aged Italian prosciutto, fresh buffalo fior di latte mozzarella, vine-ripened tomatoes, wild rocket, basil pesto on pressed rosemary focaccia.",
-    image: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80",
+    image: cabinetFocaccias,
     popular: true,
-    prepTime: "8 min"
+    prepTime: "5-8 min"
   },
   {
-    id: "m5",
-    name: "Creamy Mushroom & Goat's Curd Sourdough",
+    id: "m_wraps",
+    name: "ONE60 Gourmet Wraps (Cajun Chicken / Tuna & Egg / Avo)",
     category: "lunch",
-    price: 19.50,
-    dietary: ["V", "GF Available"],
-    description: "Pan-roasted field and enoki mushrooms in garlic-thyme white wine reduction, whipped goat's curd, truffle essence on rustic sourdough.",
-    image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
-    popular: false,
-    prepTime: "10 min"
-  },
-  {
-    id: "m6",
-    name: "Strawberry, Kale & Feta Salad",
-    category: "salads",
-    price: 19.00,
-    dietary: ["V", "GF"],
-    description: "Fresh baby spinach, shredded kale, sweet Western Australian strawberries, crumbed Greek feta, roasted candied walnuts, poppyseed citrus dressing.",
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80",
+    price: 17.90,
+    dietary: ["DF Available"],
+    description: "Freshly prepared every morning in our cabinet: Cajun spiced grilled chicken, Chicken Avocado, or Tuna & boiled egg with garden greens.",
+    image: cateringWraps,
     popular: true,
-    prepTime: "8 min"
+    prepTime: "Ready to Grab"
   },
   {
-    id: "m7",
-    name: "Halloumi Zen Harvest Bowl",
-    category: "salads",
-    price: 20.50,
-    dietary: ["V", "GF"],
-    description: "Grilled Cypriot halloumi, crisp Chinese cabbage, crunchy bean sprouts, edamame, roasted sweet pumpkin, toasted sesame ginger vinaigrette.",
-    image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
-    popular: false,
-    prepTime: "10 min"
-  },
-  {
-    id: "m8",
-    name: "Classic Chicken Caesar Salad Bowl",
-    category: "salads",
-    price: 21.00,
-    dietary: ["GF Available"],
-    description: "Herb-poached chicken breast, crisp baby cos lettuce, shaved Grana Padano, crispy double-smoked bacon lardons, baby capers, herb croutons, soft boiled egg.",
-    image: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&w=800&q=80",
+    id: "m_bacon_roll",
+    name: "CBD Bacon & Double Egg Brioche Roll",
+    category: "breakfast",
+    price: 16.90,
+    dietary: [],
+    description: "Double smoked bacon, two fried free-range eggs, melted cheddar, house tomato bourbon relish on a toasted brioche bun.",
+    image: dishSpread,
     popular: true,
-    prepTime: "8 min"
-  },
-  {
-    id: "m9",
-    name: "Traditional French Lemon & Berry Crêpe",
-    category: "sweets",
-    price: 16.50,
-    dietary: ["V"],
-    description: "Delicate Parisian style crêpe folded with fresh lemon curd, mixed berry compote, vanilla bean double cream, dusted with powdered sugar.",
-    image: "https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=800&q=80",
-    popular: true,
-    prepTime: "10 min"
+    prepTime: "6-8 min"
   },
   {
     id: "m10",
-    name: "House Baked Jumbo Muffins & Pastries",
+    name: "House Baked Jumbo Muffins (Assorted)",
     category: "sweets",
-    price: 7.50,
+    price: 5.50,
     dietary: ["V"],
-    description: "Freshly baked daily: Blueberry Crumble, Double Chocolate Hazelnut, Raspberry White Chocolate, or Apple & Cinnamon.",
-    image: "https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?auto=format&fit=crop&w=800&q=80",
+    description: "Freshly baked in-house daily: Blueberry Crumble, Double Chocolate Hazelnut, Apple Cinnamon, and Raspberry White Chocolate.",
+    image: cabinetSweets,
     popular: true,
-    prepTime: "2 min"
+    prepTime: "Ready to Grab"
   },
   {
-    id: "m11",
-    name: "Hazelnut & Raisin Cinnamon Scroll",
+    id: "m_apple_pastry",
+    name: "Apple, Raisin & Vanilla Custard Pastry Slice",
     category: "sweets",
-    price: 8.50,
+    price: 6.80,
     dietary: ["V"],
-    description: "Artisan rolled laminated brioche scroll infused with Ceylon cinnamon, plump sultanas, crushed hazelnuts, and vanilla bean glaze.",
-    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80",
+    description: "Flaky European puff pastry layered with spiced caramelized apples, plump sultanas, and rich velvety vanilla bean custard.",
+    image: cateringPastry,
     popular: false,
-    prepTime: "2 min"
+    prepTime: "Ready to Grab"
   },
   {
     id: "m12",
-    name: "Specialty Flat White / Latte / Cappuccino",
+    name: "House Flat White / Latte / Cappuccino (Hot Coffee Blend)",
     category: "coffee",
     price: 5.20,
     dietary: ["V", "VG Available", "GF"],
-    description: "Melbourne-roasted Australian beans extracted by Shaun & Shabnam's barista team. Silky microfoam with local WA dairy or Oatly / Bonsoy.",
-    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80",
+    description: "Our signature Colombian & South American roast: Rich dark chocolate, roasted hazelnut, caramel fudge crema. Steamed with local WA dairy or MilkLab oat, almond & soy.",
+    image: takeawayCup,
     popular: true,
-    prepTime: "4 min"
+    prepTime: "3-4 min"
   },
   {
-    id: "m13",
-    name: "Single Origin Cold Drip (8-Hour Extraction)",
+    id: "m_iced",
+    name: "Signature Iced Coffee & Cold Brew with Citrus Garnish",
     category: "coffee",
-    price: 6.50,
+    price: 6.80,
     dietary: ["VG", "GF", "DF"],
-    description: "Slow-extracted over 8 hours using Ethiopian Yirgacheffe washed beans. Notes of bergamot, candied stone fruit, and dark cocoa.",
-    image: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=800&q=80",
+    description: "Brewed specifically with our single-origin bright roast bean. Crisp notes of bergamot, peach, and cocoa, served over crystal ice with fresh orange peel.",
+    image: icedCoffee,
     popular: true,
-    prepTime: "3 min"
+    prepTime: "2-3 min"
+  }
+];
+
+// REAL CATERING PLATTERS FOR THE MULTI-ITEM CALCULATOR
+export const CATERING_PLATTERS = [
+  {
+    id: "plat-focaccia",
+    name: "Gourmet Artisan Focaccia & Panini Platter",
+    unitPrice: 110.00,
+    servingsPerPlatter: 6, // Feeds approx 6 people
+    servesText: "Feeds 5–7 guests (cocktail cut into 12 generous portions)",
+    description: "Handmade focaccias: Turkey Pesto, Prosciutto Fior Di Latte, Grilled Veggie & Halloumi, and Salami Provolone.",
+    image: cateringFocaccia,
+    category: "lunch"
+  },
+  {
+    id: "plat-sliders",
+    name: "Signature Mini Brioche & Charcoal Slider Box",
+    unitPrice: 125.00,
+    servingsPerPlatter: 8,
+    servesText: "Feeds 6–8 guests (16 handcrafted sliders)",
+    description: "Deluxe bite-sized sliders on golden brioche and activated charcoal buns: Angus beef, pulled chicken, and halloumi.",
+    image: cateringSliders,
+    category: "lunch"
+  },
+  {
+    id: "plat-wraps",
+    name: "ONE60 Fresh Wrap Pinwheel Platter",
+    unitPrice: 95.00,
+    servingsPerPlatter: 6,
+    servesText: "Feeds 5–7 guests (16 pinwheel portions)",
+    description: "Soft tortilla wraps: Cajun spiced chicken, Chicken Avocado, and Tuna with boiled egg & crispy baby greens.",
+    image: cateringWraps,
+    category: "lunch"
+  },
+  {
+    id: "plat-fruit",
+    name: "Seasonal Rainbow Fruit & Berry Platter",
+    unitPrice: 75.00,
+    servingsPerPlatter: 8,
+    servesText: "Feeds 8–10 guests (GF, VG)",
+    description: "Vibrant freshly sliced WA seasonal fruits: rockmelon, watermelon, pineapple, kiwi, grapes, and fresh berries with mint.",
+    image: cateringQuad,
+    category: "breakfast"
+  },
+  {
+    id: "plat-pastry",
+    name: "Artisan Sweet Pastry & Slice Dessert Box",
+    unitPrice: 85.00,
+    servingsPerPlatter: 8,
+    servesText: "Feeds 8–10 guests (20 sweet bites)",
+    description: "Apple raisin custard pastries, house baked muffin cuts, chocolate walnut brownies, and signature caramel slice fingers.",
+    image: cateringPastry,
+    category: "sweets"
+  },
+  {
+    id: "plat-coffee-thermos",
+    name: "Specialty Batch Brew Coffee Airpot (2.5L)",
+    unitPrice: 45.00,
+    servingsPerPlatter: 10,
+    servesText: "Serves 10–12 cups of hot specialty coffee",
+    description: "Thermal pump airpot of Colombian house blend filter coffee with eco cups, lids, sugar, and milk flasks (dairy & oat).",
+    image: takeawayCup,
+    category: "beverage"
   }
 ];
 
@@ -195,35 +256,35 @@ export const CATERING_PACKAGES = [
     pricePerPerson: 19.50,
     minPeople: 8,
     badge: "Most Popular for CBD Meetings",
-    description: "Straight from One60's catering menu: Fresh croissants, breakfast toasties, and house pastries.",
+    description: "Fresh croissants, breakfast toasties, mini muffins, and seasonal fruit cuts delivered warm.",
     items: [
       "Mini Ham & Cheese Croissants (Cheese & Tomato V opt)",
       "Bacon & Egg Breakfast Brioche Rolls with house relish",
       "Assorted Fresh Muffins (Blueberry, Double Choc, Apple Cinnamon)",
       "Artisan Raisin & Hazelnut Scrolls & House Banana Bread",
-      "Thermos of Australian roasted batch brew coffee & organic teas"
+      "Airpot of Colombian roast batch brew coffee & organic teas"
     ],
-    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"
+    image: cateringQuad
   },
   {
     id: "cat-sandwich",
-    name: "Artisan Focaccia & Panini Platter",
+    name: "Artisan Focaccia & Slider Boardroom Feast",
     pricePerPerson: 22.00,
     minPeople: 10,
     badge: "CBD Working Lunch Favorite",
-    description: "Generous gourmet platters served on rustic wooden presentation boards, wrapped individually or cocktail-cut.",
+    description: "A combination of our gourmet artisan focaccias, mini brioche sliders, and fresh wrap pinwheels.",
     items: [
-      "Sunkissed Turkey, Swiss cheese & pesto focaccia",
-      "Creamy Mushroom & Truffle Sourdough Toasties (V)",
+      "Sunkissed Turkey, Swiss cheese & pesto focaccia cuts",
+      "Mini Angus beef & pulled chicken brioche sliders",
       "Chicken Avocado & Cajun spiced chicken wraps",
       "San Daniele prosciutto, fior di latte & rocket panini",
       "Gourmet kettle crisps & house pickled cornichons"
     ],
-    image: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80"
+    image: cateringSliders
   },
   {
     id: "cat-plant",
-    name: "Plant-Powered & Dietary Mixed Platter",
+    name: "Plant-Powered & Vegetarian Platter",
     pricePerPerson: 21.50,
     minPeople: 8,
     badge: "100% Vegetarian / Vegan Friendly",
@@ -232,35 +293,42 @@ export const CATERING_PACKAGES = [
       "Grilled Cypriot Halloumi & Roasted Pepper Panini (V)",
       "Pesto, Vine Tomato & Fior di Latte Sourdough (V)",
       "Crispy Falafel, Harissa & Hummus flatbread wraps (VG)",
-      "Creamy Garlic Mushroom sourdough bites (V)",
-      "Fresh seasonal fruit skewers with mint drizzle (VG, GF)"
+      "Seasonal rainbow fruit platter with mint garnish (VG, GF)",
+      "Apple, Raisin & Custard pastry slice cuts (V)"
     ],
-    image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80"
+    image: cateringQuad
   },
   {
     id: "cat-grazing",
-    name: "Sweet Slice & Afternoon Tea Board",
+    name: "Sweet Slice & Afternoon Tea Box",
     pricePerPerson: 16.50,
     minPeople: 10,
     badge: "Afternoon Teas & Celebrations",
     description: "A decadent dessert board featuring One60's signature house slices, brownies, and pastries.",
     items: [
-      "Signature Caramel Slice with Belgian chocolate ganache",
+      "Flaky Apple Raisin & Custard European Pastry Bites",
       "Fudgy Chocolate Raspberry Brownie bites (GF)",
       "Traditional Carrot Cake with cream cheese frosting",
-      "Apple, Cinnamon & Berry Crumble slice",
+      "House baked muffin quarters (Blueberry & Choc)",
       "Flourless Orange & Almond cake bites (GF, DF)"
     ],
-    image: "https://images.unsplash.com/photo-1584776296944-ab6fb57b0bdd?auto=format&fit=crop&w=800&q=80"
+    image: cateringPastry
   }
 ];
 
 export const BOOK_CAFE_INFO = {
   title: "The Book Café at One60",
-  subtitle: "A Warm Corner for Book Lovers",
-  description: "Inside the cozy and welcoming space of Café ONE60, discover a unique cultural corner where books and coffee come together in perfect harmony. Browse hand-curated novels, design monographs, and Western Australian literature while enjoying your favorite brew.",
-  quote: "Take a book, leave a book, or stay awhile and read with a warm flat white.",
-  image: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80"
+  curator: "Curated with Passion by Amir",
+  location: "Dedicated Corner Right in Front of the Coffee Machine",
+  description: "Inside the warm, botanical atmosphere of ONE60, discover a cultural sanctuary where literature meets specialty coffee. Curated by Shabnam's husband Amir, our collection spans Persian classics, bilingual translations, contemporary international fiction, and philosophy.",
+  quote: "Take a book, trade a book, or stay awhile with a velvety flat white.",
+  image: bookCafeNook,
+  featuredBooks: [
+    { title: "Rumi: The Book of Love", author: "Coleman Barks Translation", tag: "Persian & Bilingual Poetry" },
+    { title: "The Blind Owl (Bof-e Koor)", author: "Sadegh Hedayat", tag: "Modern International Classic" },
+    { title: "Cloudstreet", author: "Tim Winton", tag: "Western Australian Literature" },
+    { title: "The World Atlas of Coffee", author: "James Hoffmann", tag: "Coffee Culture & Terroir" }
+  ]
 };
 
 export const KITCHEN_FEATURES = [
@@ -288,57 +356,57 @@ export const KITCHEN_FEATURES = [
 
 export const TESTIMONIALS = [
   {
-    quote: "Shabnam greets everyone with such genuine warmth every single morning. You truly feel like family the moment you walk through the doors of One 60.",
+    quote: "Shabnam greets everyone with such genuine warmth every single morning. The coffee is unmatched in the CBD, and the Colombian wall mural adds such a peaceful green vibe.",
     author: "Jessica M.",
     role: "Senior Partner, St Georges Terrace Legal",
     rating: 5,
-    source: "Regular Customer"
+    source: "Google Verified Review"
   },
   {
-    quote: "We ordered the Breakfast and Focaccia catering platters for our executive partner meeting. Basilica-level presentation and delicious fresh ingredients delivered right on time.",
+    quote: "We ordered catering platters for 35 people for our boardroom workshop. The mini sliders and fresh wrap boxes were exceptional. Arrived right on time and beautifully presented.",
     author: "David K.",
     role: "Operations Director, Resources WA",
     rating: 5,
-    source: "Corporate Catering Client"
+    source: "Google Verified Review"
   },
   {
-    quote: "Shaun and Shabnam have built something special here. The Book Café corner paired with their Melbourne-roasted flat white makes One60 the best sanctuary in Murray St Mall.",
+    quote: "Shaun and Shabnam have created something special. The Book Café corner right in front of the coffee machine is a brilliant touch. Outstanding flat white and friendly service.",
     author: "Chloe & Liam R.",
-    role: "Perth Food & Lifestyle Guides",
+    role: "Perth CBD Regulars",
     rating: 5,
-    source: "Food Guide Review"
+    source: "Google Verified Review"
   }
 ];
 
 export const GALLERY_IMAGES = [
   {
-    url: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=80",
-    caption: "Sunlit Morning Atmosphere at 160 Murray St",
-    category: "ambience"
+    url: dishSpread,
+    caption: "Freshly Prepared Artisan Food at 160 Murray St",
+    category: "food"
   },
   {
-    url: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1000&q=80",
-    caption: "Barista Crafted Flat White by Shaun & Shabnam",
+    url: coffeeBarista,
+    caption: "Barista Extraction on our Commercial Espresso Bar",
     category: "coffee"
   },
   {
-    url: "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?auto=format&fit=crop&w=1000&q=80",
-    caption: "Signature Yuzu Eggs Benedict",
-    category: "food"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1000&q=80",
-    caption: "Freshly Pressed Artisan Focaccias",
-    category: "food"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1000&q=80",
-    caption: "The Book Café — Cultural Corner",
-    category: "ambience"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1000&q=80",
-    caption: "CBD Corporate Boardroom Catering Platters",
+    url: cateringQuad,
+    caption: "Corporate Catering Platters Ready for Delivery",
     category: "catering"
+  },
+  {
+    url: dishEggsBenedict,
+    caption: "Signature Poached Eggs & Yuzu Hollandaise",
+    category: "food"
+  },
+  {
+    url: icedCoffee,
+    caption: "Single Origin Iced Coffee with Orange Garnish",
+    category: "coffee"
+  },
+  {
+    url: bookCafeNook,
+    caption: "The Book Café Corner in front of the coffee bar",
+    category: "ambience"
   }
 ];

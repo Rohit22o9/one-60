@@ -1,4 +1,6 @@
-# Logs
+# Local Raw Photo Dump
+/Photos/
+
 logs
 *.log
 npm-debug.log*

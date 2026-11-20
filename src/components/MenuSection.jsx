@@ -11,8 +11,9 @@ import {
   Clock, 
   Check, 
   Eye, 
-  Filter,
-  Flame
+  Filter, 
+  Flame,
+  Camera
 } from 'lucide-react';
 
 export default function MenuSection({ onAddToCart, onSelectDish }) {
@@ -51,18 +52,28 @@ export default function MenuSection({ onAddToCart, onSelectDish }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-[#C26D43] mb-3">
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-[#404D3C] mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Seasonal All-Day Dining</span>
+            <span>Artisan Cabinet & All-Day Kitchen</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-[#181513]">
-            The One 60 Kitchen Menu
+            The ONE60 Kitchen Menu
           </h2>
-          <div className="w-16 h-0.5 bg-[#C26D43] mx-auto mt-4 mb-4"></div>
+          <div className="w-16 h-0.5 bg-[#404D3C] mx-auto mt-4 mb-4"></div>
           <p className="text-stone-600 font-light text-base sm:text-lg">
-            Prepared fresh to order using premium Western Australian ingredients, artisan breads, and farm-fresh eggs.
+            Prepared fresh each morning using premium Western Australian ingredients, artisan sourdough, and European baking traditions.
           </p>
+        </div>
+
+        {/* Photography in progress announcement callout (per owner feedback) */}
+        <div className="max-w-2xl mx-auto mb-10">
+          <div className="p-3.5 rounded-2xl bg-[#EBF0E9]/70 border border-[#C5D5C2] flex items-center justify-center gap-2 text-xs text-[#344431] text-center">
+            <Camera className="w-4 h-4 text-[#404D3C] shrink-0" />
+            <span>
+              <strong>Authentic In-Store Cabinet Selections:</strong> Real photos from our Perth display cabinet. Additional high-definition dish photos are being progressively added.
+            </span>
+          </div>
         </div>
 
         {/* Controls: Search & Category Tabs */}
@@ -74,9 +85,9 @@ export default function MenuSection({ onAddToCart, onSelectDish }) {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium tracking-wide uppercase transition-all duration-200 shrink-0 ${
+                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium tracking-wide uppercase transition-all duration-200 shrink-0 cursor-pointer ${
                   activeCategory === cat.id
-                    ? 'bg-[#181513] text-[#FAF8F5] shadow-md'
+                    ? 'bg-[#404D3C] text-[#FAF8F5] shadow-md'
                     : 'bg-white text-stone-700 border border-stone-200/80 hover:bg-stone-100 hover:text-stone-900'
                 }`}
               >
@@ -98,9 +109,9 @@ export default function MenuSection({ onAddToCart, onSelectDish }) {
                 <button
                   key={diet.id}
                   onClick={() => setActiveDietary(diet.id)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all shrink-0 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all shrink-0 cursor-pointer ${
                     activeDietary === diet.id
-                      ? 'bg-[#C26D43] text-white shadow-xs'
+                      ? 'bg-[#404D3C] text-white shadow-xs'
                       : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
                   }`}
                 >
@@ -117,7 +128,7 @@ export default function MenuSection({ onAddToCart, onSelectDish }) {
                 placeholder="Search breakfast, paninis..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 placeholder:text-stone-400 focus:outline-hidden focus:ring-2 focus:ring-[#C26D43]/40 focus:bg-white transition-all"
+                className="w-full pl-9 pr-4 py-2 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 placeholder:text-stone-400 focus:outline-hidden focus:ring-2 focus:ring-[#404D3C]/40 focus:bg-white transition-all"
               />
               {searchQuery && (
                 <button
@@ -178,7 +189,7 @@ export default function MenuSection({ onAddToCart, onSelectDish }) {
                   <div>
                     {/* Header: Name & Price */}
                     <div className="flex items-start justify-between gap-2 mb-2">
-                      <h3 className="font-serif text-lg sm:text-xl font-bold text-stone-900 group-hover:text-[#C26D43] transition-colors leading-snug">
+                      <h3 className="font-serif text-lg sm:text-xl font-bold text-stone-900 group-hover:text-[#404D3C] transition-colors leading-snug">
                         {item.name}
                       </h3>
                       <span className="font-serif text-lg font-bold text-[#181513] shrink-0">
@@ -209,48 +220,45 @@ export default function MenuSection({ onAddToCart, onSelectDish }) {
                   {/* Card Bottom CTA */}
                   <div className="pt-5 mt-4 border-t border-stone-100 flex items-center justify-between">
                     <span className="text-xs text-stone-500 font-medium">
-                      Freshly prepared to order
+                      Freshly prepared in-house
                     </span>
 
                     <button
                       onClick={(e) => handleQuickAdd(e, item)}
-                      className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                      className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                         addedId === item.id
                           ? 'bg-emerald-600 text-white'
-                          : 'bg-[#181513] text-white hover:bg-[#C26D43]'
+                          : 'bg-[#404D3C] text-white hover:bg-[#2f392c]'
                       }`}
-                      title="Add to Takeaway Bag"
+                      aria-label={`Add ${item.name} to bag`}
                     >
                       {addedId === item.id ? (
                         <>
                           <Check className="w-3.5 h-3.5" />
-                          <span>Added!</span>
+                          <span>Added</span>
                         </>
                       ) : (
                         <>
                           <Plus className="w-3.5 h-3.5" />
-                          <span>Add to Bag</span>
+                          <span>Add</span>
                         </>
                       )}
                     </button>
                   </div>
-
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 bg-white rounded-3xl border border-stone-200 p-8 max-w-md mx-auto">
-            <Filter className="w-8 h-8 text-stone-400 mx-auto mb-3" />
-            <h4 className="font-serif text-lg font-bold text-stone-900 mb-1">No dishes match your filter</h4>
-            <p className="text-xs text-stone-500 mb-4">Try clearing your dietary filter or search query to see full menu items.</p>
+          <div className="text-center py-16 bg-white rounded-3xl border border-stone-200">
+            <p className="text-stone-500 text-sm">No items found matching your filters.</p>
             <button
               onClick={() => {
                 setActiveCategory("all");
                 setActiveDietary("all");
                 setSearchQuery("");
               }}
-              className="px-4 py-2 rounded-full bg-[#181513] text-white text-xs font-semibold uppercase tracking-wider"
+              className="mt-4 px-4 py-2 rounded-full bg-[#404D3C] text-white text-xs font-semibold uppercase tracking-wider"
             >
               Reset Filters
             </button>
@@ -261,4 +269,3 @@ export default function MenuSection({ onAddToCart, onSelectDish }) {
     </section>
   );
 }
-

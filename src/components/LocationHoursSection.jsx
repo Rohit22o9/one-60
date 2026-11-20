@@ -8,7 +8,8 @@ import {
   Train, 
   Car, 
   Send,
-  CheckCircle2
+  CheckCircle2,
+  Smartphone
 } from 'lucide-react';
 import { CAFE_INFO } from '../data/cafeData';
 
@@ -16,7 +17,7 @@ export default function LocationHoursSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "General Inquiry",
+    subject: "Corporate Catering",
     message: ""
   });
   const [isSent, setIsSent] = useState(false);
@@ -26,7 +27,7 @@ export default function LocationHoursSection() {
     setIsSent(true);
     setTimeout(() => {
       setIsSent(false);
-      setFormData({ name: "", email: "", subject: "General Inquiry", message: "" });
+      setFormData({ name: "", email: "", subject: "Corporate Catering", message: "" });
     }, 4000);
   };
 
@@ -36,16 +37,16 @@ export default function LocationHoursSection() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-[#C26D43] mb-3">
+          <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-[#404D3C] mb-3">
             <MapPin className="w-3.5 h-3.5" />
             <span>Finding Us in Perth CBD</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-[#181513]">
-            Location & Trading Hours
+            Location, Trading Hours & Contact
           </h2>
-          <div className="w-16 h-0.5 bg-[#C26D43] mx-auto mt-4 mb-4"></div>
+          <div className="w-16 h-0.5 bg-[#404D3C] mx-auto mt-4 mb-4"></div>
           <p className="text-stone-600 font-light text-base sm:text-lg">
-            Situated on the pedestrian thoroughfare of 160 Murray Street Mall, steps away from Perth Station and Forrest Chase.
+            Situated on the vibrant pedestrian thoroughfare of 160 Murray Street Mall, steps away from Perth Underground Station, Forrest Chase, and St Georges Terrace.
           </p>
         </div>
 
@@ -58,12 +59,12 @@ export default function LocationHoursSection() {
             {/* Hours Card */}
             <div className="bg-white rounded-3xl p-8 border border-stone-200/90 shadow-md">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#FAF0EA] text-[#C26D43] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-[#EBF0E9] text-[#404D3C] flex items-center justify-center">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="font-serif text-xl font-bold text-stone-900">Trading Hours</h3>
-                  <p className="text-xs text-stone-500">Open 7 days a week for breakfast & lunch</p>
+                  <p className="text-xs text-stone-500">Open 7 Days a week & Catering Every Day</p>
                 </div>
               </div>
 
@@ -77,7 +78,7 @@ export default function LocationHoursSection() {
                     <div className="text-right">
                       <span className="font-semibold text-stone-900">{h.time}</span>
                       {h.note && (
-                        <span className="block text-[10px] text-[#C26D43] font-medium">{h.note}</span>
+                        <span className="block text-[10px] text-[#404D3C] font-semibold">{h.note}</span>
                       )}
                     </div>
                   </div>
@@ -85,21 +86,21 @@ export default function LocationHoursSection() {
               </div>
             </div>
 
-            {/* Address & Transit Card */}
+            {/* Address & Direct Contact Card */}
             <div className="bg-white rounded-3xl p-8 border border-stone-200/90 shadow-md">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-stone-100 text-[#181513] flex items-center justify-center">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-stone-900">Address & Transit</h3>
+                  <h3 className="font-serif text-xl font-bold text-stone-900">Address & Contacts</h3>
                   <p className="text-xs text-stone-500">{CAFE_INFO.address}</p>
                 </div>
               </div>
 
               <div className="space-y-4 text-xs sm:text-sm text-stone-600">
                 <div className="flex items-start gap-3">
-                  <Train className="w-5 h-5 text-[#C26D43] shrink-0 mt-0.5" />
+                  <Train className="w-5 h-5 text-[#404D3C] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-stone-900">By Train & Bus:</strong>
                     <p className="text-stone-500 font-light mt-0.5">2-minute walk from Perth Station and Perth Underground Station.</p>
@@ -107,30 +108,38 @@ export default function LocationHoursSection() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Car className="w-5 h-5 text-[#C26D43] shrink-0 mt-0.5" />
+                  <Car className="w-5 h-5 text-[#404D3C] shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-stone-900">Parking:</strong>
+                    <strong className="text-stone-900">Parking Nearby:</strong>
                     <p className="text-stone-500 font-light mt-0.5">CPP Murray St Car Park & Cultural Centre Car Park within 200m.</p>
                   </div>
                 </div>
 
-                <div className="pt-2 flex flex-wrap gap-3">
+                <div className="pt-2 flex flex-wrap gap-2.5">
                   <a
                     href="https://maps.google.com/?q=160+Murray+Street+Mall+Perth+WA"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#181513] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#C26D43] transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#404D3C] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#2f392c] transition-colors cursor-pointer"
                   >
                     <Navigation className="w-3.5 h-3.5" />
                     <span>Get Directions</span>
                   </a>
 
                   <a
+                    href={`tel:${CAFE_INFO.mobilePhone}`}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#EBF0E9] text-[#344431] text-xs font-semibold uppercase tracking-wider hover:bg-[#dfe8dc] transition-colors cursor-pointer"
+                  >
+                    <Smartphone className="w-3.5 h-3.5 text-[#404D3C]" />
+                    <span>Mobile: {CAFE_INFO.mobilePhone}</span>
+                  </a>
+
+                  <a
                     href={`tel:${CAFE_INFO.phone}`}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-stone-100 text-stone-800 text-xs font-semibold uppercase tracking-wider hover:bg-stone-200 transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-stone-100 text-stone-800 text-xs font-semibold uppercase tracking-wider hover:bg-stone-200 transition-colors cursor-pointer"
                   >
                     <Phone className="w-3.5 h-3.5" />
-                    <span>{CAFE_INFO.phone}</span>
+                    <span>Landline: {CAFE_INFO.phone}</span>
                   </a>
                 </div>
               </div>
@@ -144,7 +153,7 @@ export default function LocationHoursSection() {
               Send Us a Message
             </h3>
             <p className="text-xs sm:text-sm text-stone-500 font-light mb-6">
-              Have a question about group reservations, catering packages, or commercial kitchen hire with The Daily Drop? Reach out to Shaun and Shabnam’s team.
+              Have a question about corporate catering platters, dietary options, or commercial kitchen facility hire with The Daily Drop? Reach out to Shaun and Shabnam’s team.
             </p>
 
             {isSent ? (
@@ -165,7 +174,7 @@ export default function LocationHoursSection() {
                     placeholder="e.g. Alex Morgan"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="w-full p-3 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-hidden focus:ring-2 focus:ring-[#C26D43]"
+                    className="w-full p-3 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-hidden focus:ring-2 focus:ring-[#404D3C]"
                   />
                 </div>
 
@@ -177,7 +186,7 @@ export default function LocationHoursSection() {
                     placeholder="alex@company.com"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full p-3 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-hidden focus:ring-2 focus:ring-[#C26D43]"
+                    className="w-full p-3 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-hidden focus:ring-2 focus:ring-[#404D3C]"
                   />
                 </div>
 
@@ -186,12 +195,12 @@ export default function LocationHoursSection() {
                   <select
                     value={formData.subject}
                     onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                    className="w-full p-3 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-hidden focus:ring-2 focus:ring-[#C26D43]"
+                    className="w-full p-3 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-hidden focus:ring-2 focus:ring-[#404D3C]"
                   >
-                    <option value="General Inquiry">General Cafe Question</option>
                     <option value="Corporate Catering">Corporate Catering for Perth Office</option>
                     <option value="Commercial Kitchen Hire">Commercial Kitchen Shift / Facility Hire</option>
-                    <option value="Private Event">Private Venue / Evening Event Hire</option>
+                    <option value="Book Cafe">The Book Café Inquiry</option>
+                    <option value="General Inquiry">General Cafe Question</option>
                   </select>
                 </div>
 
@@ -200,16 +209,16 @@ export default function LocationHoursSection() {
                   <textarea
                     rows={4}
                     required
-                    placeholder="Tell us about your event, dietary questions, or kitchen hire needs..."
+                    placeholder="Tell us about your event, dietary questions, or catering requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    className="w-full p-3 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-hidden focus:ring-2 focus:ring-[#C26D43]"
+                    className="w-full p-3 rounded-xl bg-stone-50 border border-stone-200 text-xs sm:text-sm text-stone-900 focus:outline-hidden focus:ring-2 focus:ring-[#404D3C]"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-full bg-[#181513] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#C26D43] transition-colors shadow-md flex items-center justify-center gap-2"
+                  className="w-full py-3.5 rounded-full bg-[#404D3C] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#2f392c] transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>Send Inquiry</span>
@@ -225,4 +234,3 @@ export default function LocationHoursSection() {
     </section>
   );
 }
-

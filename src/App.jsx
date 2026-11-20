@@ -4,10 +4,9 @@ import Hero from './components/Hero';
 import AboutSection from './components/AboutSection';
 import CoffeeSection from './components/CoffeeSection';
 import MenuSection from './components/MenuSection';
-import BookCafeSection from './components/BookCafeSection';
 import CateringSection from './components/CateringSection';
+import BookCafeSection from './components/BookCafeSection';
 import KitchenBookingSection from './components/KitchenBookingSection';
-import ReservationSection from './components/ReservationSection';
 import GallerySection from './components/GallerySection';
 import TestimonialsSection from './components/TestimonialsSection';
 import LocationHoursSection from './components/LocationHoursSection';
@@ -17,7 +16,8 @@ import DishModal from './components/DishModal';
 import CartDrawer from './components/CartDrawer';
 import CateringModal from './components/CateringModal';
 import KitchenModal from './components/KitchenModal';
-import ReservationModal from './components/ReservationModal';
+
+import { takeawayCup, cabinetFocaccias } from './assets/photos';
 
 export default function App() {
   // Cart State
@@ -27,16 +27,16 @@ export default function App() {
       name: "Sunkissed Turkey & Pesto Focaccia",
       price: 18.50,
       quantity: 1,
-      image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=400&q=80",
+      image: cabinetFocaccias,
       selectedAddons: []
     },
     {
       id: "m12",
-      name: "Specialty Flat White (Melbourne Roast)",
+      name: "Specialty Flat White (ONE60 House Roast)",
       price: 5.20,
       quantity: 2,
-      image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80",
-      selectedAddons: [{ name: "Oat Milk (Oatly Barista)", price: 0.80 }],
+      image: takeawayCup,
+      selectedAddons: [{ name: "MilkLab Oat Milk", price: 0.80 }],
       calculatedPrice: 6.00
     }
   ]);
@@ -44,7 +44,6 @@ export default function App() {
 
   // Modals State
   const [selectedDish, setSelectedDish] = useState(null);
-  const [isReservationModalOpen, setIsReservationModalOpen] = useState(false);
   const [isCateringModalOpen, setIsCateringModalOpen] = useState(false);
   const [cateringInitialPackage, setCateringInitialPackage] = useState(null);
   const [isKitchenModalOpen, setIsKitchenModalOpen] = useState(false);
@@ -96,19 +95,16 @@ export default function App() {
       <Navbar
         cartCount={totalCartCount}
         onOpenCart={() => setIsCartOpen(true)}
-        onOpenReservation={() => setIsReservationModalOpen(true)}
         onOpenCatering={() => {
           setCateringInitialPackage(null);
           setIsCateringModalOpen(true);
         }}
-        onOpenKitchen={() => setIsKitchenModalOpen(true)}
       />
 
       {/* Main Page Content */}
       <main className="flex-1">
         {/* 1. Hero Section */}
         <Hero
-          onOpenReservation={() => setIsReservationModalOpen(true)}
           onOpenCatering={() => {
             setCateringInitialPackage(null);
             setIsCateringModalOpen(true);
@@ -116,7 +112,7 @@ export default function App() {
           onOpenKitchen={() => setIsKitchenModalOpen(true)}
         />
 
-        {/* 2. About & Ethos Section (Shabnam & Shaun's Story) */}
+        {/* 2. Our Story (Shabnam & Shaun Siblings, Persian Hospitality & Colombian Mural Roots) */}
         <AboutSection
           onOpenKitchen={() => setIsKitchenModalOpen(true)}
           onOpenCatering={() => {
@@ -125,59 +121,53 @@ export default function App() {
           }}
         />
 
-        {/* 3. The Book Café Cultural Corner (Authentic feature from one60cafe.com.au) */}
-        <BookCafeSection
-          onOpenReservation={() => setIsReservationModalOpen(true)}
-        />
-
-        {/* 4. Specialty Coffee Showcase */}
+        {/* 3. Specialty Coffee (Colombian Wall Mural, 3 Bean Profiles: Hot, Iced, Cold Drip) */}
         <CoffeeSection 
           onSelectCoffee={() => {
             const coffeeItem = {
               id: "m12",
-              name: "Specialty Flat White / Latte",
+              name: "ONE60 Specialty Flat White",
               category: "coffee",
               price: 5.20,
               dietary: ["GF"],
-              description: "Melbourne-roasted Australian beans extracted by Shaun & Shabnam's team.",
-              image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80"
+              description: "Colombian & South American roast extracted by Shaun & Shabnam's team.",
+              image: takeawayCup
             };
             setSelectedDish(coffeeItem);
           }}
         />
 
-        {/* 5. Interactive All-Day Menu */}
+        {/* 4. Interactive All-Day Menu (Real Cabinet Photos & Prices) */}
         <MenuSection
           onAddToCart={handleAddToCart}
           onSelectDish={(dish) => setSelectedDish(dish)}
         />
 
-        {/* 6. Corporate & Office Catering (Focaccias, Breakfast & Pastry platters) */}
+        {/* 5. Corporate & Office Catering (Dual Multi-Item Calculator, 3 Days Notice, 7 Days Delivery) */}
         <CateringSection
           onOpenCateringWithPackage={handleOpenCateringWithPackage}
         />
+
+        {/* 6. The Book Café Cultural Corner (Curated by Amir, Persian & International Titles, in front of coffee bar) */}
+        <BookCafeSection />
 
         {/* 7. Commercial Kitchen & Venue Hire (Synergy with The Daily Drop) */}
         <KitchenBookingSection
           onOpenKitchen={() => setIsKitchenModalOpen(true)}
         />
 
-        {/* 8. Table Reservation Experience */}
-        <ReservationSection />
-
-        {/* 9. Visual Gallery & Atmosphere */}
+        {/* 8. Visual Gallery & Atmosphere */}
         <GallerySection />
 
-        {/* 10. Reviews & Community Praise */}
+        {/* 9. Reviews & Community Praise (Google Reviews) */}
         <TestimonialsSection />
 
-        {/* 11. Location, Trading Hours & Transit */}
+        {/* 10. Location, Trading Hours & Transit */}
         <LocationHoursSection />
       </main>
 
       {/* Footer & VIP Club */}
       <Footer
-        onOpenReservation={() => setIsReservationModalOpen(true)}
         onOpenCatering={() => {
           setCateringInitialPackage(null);
           setIsCateringModalOpen(true);
@@ -185,18 +175,11 @@ export default function App() {
         onOpenKitchen={() => setIsKitchenModalOpen(true)}
       />
 
-      {/* Floating Action Button */}
-      <aside aria-label="Floating quick actions" className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
-        <button
-          onClick={() => setIsReservationModalOpen(true)}
-          className="hidden sm:flex items-center gap-2 px-5 py-3 rounded-full bg-[#404D3C] text-white text-xs font-semibold uppercase tracking-wider shadow-2xl hover:bg-[#2f392c] transition-all duration-300 border border-[#52634d]"
-        >
-          <span>Book a Table</span>
-        </button>
-
+      {/* Floating Action Button (Cart Only — Table Booking REMOVED) */}
+      <aside aria-label="Takeaway quick bag" className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
         <button
           onClick={() => setIsCartOpen(true)}
-          className="relative p-3.5 rounded-full bg-[#404D3C] text-white shadow-2xl hover:bg-[#2f392c] transition-transform hover:scale-105"
+          className="relative p-4 rounded-full bg-[#404D3C] text-white shadow-2xl hover:bg-[#2f392c] transition-all hover:scale-105 cursor-pointer"
           title="Takeaway Bag"
           aria-label="Takeaway Bag"
         >
@@ -239,11 +222,6 @@ export default function App() {
       <KitchenModal
         isOpen={isKitchenModalOpen}
         onClose={() => setIsKitchenModalOpen(false)}
-      />
-
-      <ReservationModal
-        isOpen={isReservationModalOpen}
-        onClose={() => setIsReservationModalOpen(false)}
       />
 
     </div>

@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { 
   ShoppingBag, 
-  Calendar, 
   MapPin, 
-  Clock, 
   Menu as MenuIcon, 
   X, 
   Phone,
-  Briefcase,
-  UtensilsCrossed
+  Briefcase
 } from 'lucide-react';
 import { CAFE_INFO } from '../data/cafeData';
 import Logo from './Logo';
@@ -16,9 +13,7 @@ import Logo from './Logo';
 export default function Navbar({ 
   cartCount, 
   onOpenCart, 
-  onOpenReservation, 
-  onOpenCatering,
-  onOpenKitchen
+  onOpenCatering
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,11 +28,11 @@ export default function Navbar({
   }, []);
 
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Menu", href: "#menu" },
-    { name: "Book Café", href: "#book-cafe" },
+    { name: "Our Story", href: "#story" },
     { name: "Specialty Coffee", href: "#coffee" },
+    { name: "Menu", href: "#menu" },
     { name: "Corporate Catering", href: "#catering" },
+    { name: "The Book Café", href: "#book-cafe" },
     { name: "Kitchen Hire", href: "#kitchen" },
     { name: "Location & Hours", href: "#location" },
   ];
@@ -53,7 +48,7 @@ export default function Navbar({
               <span className="font-semibold text-amber-200">Where Good Vibes Brew:</span>
               <span className="hidden sm:inline text-stone-200">160 Murray St Mall, Perth CBD</span>
               <span className="text-amber-200/60">•</span>
-              <span className="text-stone-200">Accepting Corporate Catering & Kitchen Hire Bookings</span>
+              <span className="text-stone-200">Open 7 Days & Catering Every Day (3 Days Notice)</span>
             </div>
             <div className="flex items-center gap-4 text-xs shrink-0">
               <a 
@@ -65,7 +60,7 @@ export default function Navbar({
               </a>
               <button 
                 onClick={() => setShowBanner(false)}
-                className="text-stone-300 hover:text-white transition-colors"
+                className="text-stone-300 hover:text-white transition-colors cursor-pointer"
                 aria-label="Close notification"
               >
                 <X className="w-3.5 h-3.5" />
@@ -95,7 +90,7 @@ export default function Navbar({
               <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-stone-700 leading-tight">
                 Murray St Mall
               </span>
-              <span className="text-[9px] uppercase tracking-[0.15em] font-medium text-stone-400">
+              <span className="text-[9px] uppercase tracking-[0.15em] font-medium text-[#404D3C]">
                 Perth CBD
               </span>
             </div>
@@ -132,13 +127,13 @@ export default function Navbar({
               )}
             </button>
 
-            {/* Quick Reservation CTA */}
+            {/* Corporate Catering CTA (Replaces Book Table) */}
             <button
-              onClick={onOpenReservation}
+              onClick={onOpenCatering}
               className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#404D3C] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#2f392c] hover:shadow-md transition-all duration-300"
             >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Book Table</span>
+              <Briefcase className="w-3.5 h-3.5" />
+              <span>Corporate Catering</span>
             </button>
 
             {/* Mobile Menu Hamburger */}
@@ -150,62 +145,44 @@ export default function Navbar({
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
             </button>
           </div>
+
         </div>
 
-        {/* Mobile Dropdown Drawer */}
+        {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="xl:hidden bg-[#FAF8F5] border-t border-stone-200 px-6 py-6 space-y-4 shadow-xl animate-in slide-in-from-top-2 duration-200">
-            <div className="flex flex-col space-y-3 text-sm font-medium uppercase tracking-wider text-stone-700">
+          <div className="xl:hidden bg-[#FAF8F5] border-t border-stone-200 px-6 py-6 space-y-4 shadow-xl">
+            <div className="flex flex-col space-y-3">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="py-2 border-b border-stone-200/50 hover:text-[#404D3C] transition-colors"
+                  className="text-stone-800 text-sm font-semibold uppercase tracking-wider hover:text-[#404D3C] py-1 border-b border-stone-100"
                 >
                   {link.name}
                 </a>
               ))}
             </div>
 
-            <div className="pt-2 flex flex-col gap-2.5">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenReservation();
-                }}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#404D3C] text-white font-medium text-sm hover:bg-[#2f392c] transition-colors"
-              >
-                <Calendar className="w-4 h-4" />
-                <span>Reserve a Table</span>
-              </button>
-
+            <div className="pt-4 border-t border-stone-200 flex flex-col gap-2.5">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenCatering();
                 }}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-stone-200 text-stone-900 font-medium text-sm hover:bg-stone-300 transition-colors"
+                className="w-full py-3 rounded-full bg-[#404D3C] text-white text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2"
               >
-                <Briefcase className="w-4 h-4 text-[#404D3C]" />
-                <span>Corporate Catering Inquiry</span>
+                <Briefcase className="w-4 h-4" />
+                <span>Corporate Catering Quote</span>
               </button>
 
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenKitchen();
-                }}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-stone-300 text-stone-800 font-medium text-sm hover:bg-stone-100 transition-colors"
+              <a
+                href={`tel:${CAFE_INFO.phone}`}
+                className="w-full py-2.5 rounded-full bg-stone-100 text-stone-800 text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2"
               >
-                <UtensilsCrossed className="w-4 h-4 text-[#404D3C]" />
-                <span>Commercial Kitchen & Hire</span>
-              </button>
-            </div>
-
-            <div className="pt-3 text-xs text-stone-500 flex flex-col gap-1 border-t border-stone-200">
-              <p className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5 text-[#404D3C]" /> 160 Murray Street Mall, Perth WA 6000</p>
-              <p className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-[#404D3C]" /> Mon–Sat 7:30am–5pm | Sun 8:30am–5pm</p>
+                <Phone className="w-4 h-4 text-[#404D3C]" />
+                <span>Call {CAFE_INFO.phone}</span>
+              </a>
             </div>
           </div>
         )}

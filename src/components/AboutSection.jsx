@@ -1,9 +1,10 @@
 import React from 'react';
-import { Coffee, Heart, Award, Users, Utensils, ShieldCheck, Sparkles, BookOpen } from 'lucide-react';
+import { Coffee, Heart, Users, Sparkles, BookOpen, ShieldCheck } from 'lucide-react';
+import { dishSpread, coffeeBarista } from '../assets/photos';
 
 export default function AboutSection({ onOpenKitchen, onOpenCatering }) {
   return (
-    <section id="about" className="py-20 md:py-28 bg-[#FAF8F5] relative">
+    <section id="story" className="py-20 md:py-28 bg-[#FAF8F5] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -17,20 +18,20 @@ export default function AboutSection({ onOpenKitchen, onOpenCatering }) {
           </h2>
           <div className="w-16 h-0.5 bg-[#404D3C] mx-auto mt-4 mb-6"></div>
           <p className="text-stone-600 font-light text-base sm:text-lg leading-relaxed">
-            One60 Café was never just about coffee — it was always about connection. Founded by siblings Shabnam and Shaun, One60 was born from a shared dream: to create a space where good food and genuine moments come together.
+            One60 Café was never just about coffee — it was always about genuine human connection. Founded by siblings Shabnam and Shaun, ONE60 is a warm gathering place where good food and heartfelt moments come together.
           </p>
         </div>
 
         {/* Story Grid with Imagery & Pillars */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
           
-          {/* Left Images Collage */}
+          {/* Left Images Collage with Real Photos */}
           <div className="lg:col-span-6 grid grid-cols-2 gap-4">
             <div className="space-y-4">
-              <div className="rounded-2xl overflow-hidden aspect-[4/5] shadow-md">
+              <div className="rounded-2xl overflow-hidden aspect-[4/5] shadow-md border-2 border-white">
                 <img 
-                  src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=700&q=80" 
-                  alt="Cafe interior & coffee bar" 
+                  src={dishSpread} 
+                  alt="Cafe food and brunch table" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -38,7 +39,7 @@ export default function AboutSection({ onOpenKitchen, onOpenCatering }) {
                 <div className="font-serif text-2xl font-bold text-[#344431]">ONE60</div>
                 <div className="text-xs uppercase tracking-wider text-[#404D3C] font-semibold mt-0.5">160 Murray St Mall</div>
                 <p className="text-xs text-stone-600 mt-2 leading-relaxed">
-                  Perth CBD’s meeting point where Shabnam and Shaun welcome regulars, professionals, and coffee lovers like family.
+                  Perth CBD’s meeting point where Shabnam and Shaun welcome regulars, corporate professionals, and travelers like family.
                 </p>
               </div>
             </div>
@@ -50,17 +51,17 @@ export default function AboutSection({ onOpenKitchen, onOpenCatering }) {
                   <span className="text-xs uppercase tracking-wider font-semibold">Sibling Hospitality</span>
                 </div>
                 <p className="font-serif text-base sm:text-lg font-medium italic leading-snug">
-                  “At One60, we’re not just serving food and drinks — we’re serving memories.”
+                  “At One60, we’re not just serving food and drinks — we’re serving memories and community.”
                 </p>
                 <div className="text-xs text-stone-300 mt-3 font-sans">
                   — Shabnam & Shaun, Founders
                 </div>
               </div>
 
-              <div className="rounded-2xl overflow-hidden aspect-[4/5] shadow-md">
+              <div className="rounded-2xl overflow-hidden aspect-[4/5] shadow-md border-2 border-white">
                 <img 
-                  src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=700&q=80" 
-                  alt="Barista brewing specialty coffee" 
+                  src={coffeeBarista} 
+                  alt="Barista crafting latte art on commercial espresso machine" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -70,20 +71,21 @@ export default function AboutSection({ onOpenKitchen, onOpenCatering }) {
           {/* Right Narrative & Pillars */}
           <div className="lg:col-span-6 space-y-6">
             <h3 className="font-serif text-2xl sm:text-3xl font-medium text-[#181513]">
-              From the Morning Rush to the Afternoon Slowdowns
+              From the Morning CBD Rush to Unhurried Conversations
             </h3>
             
             <p className="text-stone-600 font-light leading-relaxed text-sm sm:text-base">
-              You’ll often find <strong className="font-medium text-stone-900">Shabnam</strong> behind the counter, remembering names, sharing smiles, and making sure everything feels just right — because to her, every customer is like family.
+              You’ll often find <strong className="font-medium text-stone-900">Shabnam</strong> behind the counter, remembering names, sharing smiles, and making sure everyone feels embraced by our Persian and international hospitality — because to her, every guest is family.
             </p>
 
             <p className="text-stone-600 font-light leading-relaxed text-sm sm:text-base">
-              <strong className="font-medium text-stone-900">Shaun</strong>, on the other hand, is always buzzing behind the scenes — ensuring your favourite wraps, muffins, and lattes are just as good (if not better) than the last time you visited. (With just a little healthy sibling rivalry over who makes the better flat white!)
+              <strong className="font-medium text-stone-900">Shaun</strong>, on the other hand, is buzzing behind the scenes — making sure your favorite focaccias, chicken avocado wraps, muffins, and flat whites are crafted to perfection every single visit. (With a little healthy sibling rivalry over who extracts the sweeter espresso!)
             </p>
 
-            <p className="text-stone-600 font-light leading-relaxed text-sm sm:text-base">
-              While our specialty beans are roasted with care in Melbourne, the warmth and love you feel here is 100% local to Perth. Plus, through our culinary collaboration with <strong className="font-medium text-[#404D3C]">The Daily Drop</strong>, our state-of-the-art commercial kitchen powers boardroom catering and certified kitchen facility hire.
-            </p>
+            <div className="p-4 rounded-2xl bg-[#F4EFEB] border-l-4 border-[#404D3C] text-stone-700 text-sm leading-relaxed">
+              <strong className="text-stone-900 font-medium">The Story Behind Our Evergreen Decor:</strong><br />
+              Our shop’s calming olive-green decor was born directly from the story of our feature wall — depicting the Colombian girl surrounded by white coffee blossoms, ripening red cherries, and the timeless art of roasting.
+            </div>
 
             {/* 4 Feature Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
@@ -91,8 +93,8 @@ export default function AboutSection({ onOpenKitchen, onOpenCatering }) {
                 <div className="w-9 h-9 rounded-lg bg-[#EBF0E9] text-[#404D3C] flex items-center justify-center mb-2.5">
                   <Coffee className="w-5 h-5" />
                 </div>
-                <h4 className="font-serif font-bold text-stone-900 text-base">Australian Coffee</h4>
-                <p className="text-xs text-stone-600 mt-1">Melbourne-roasted specialty beans paired with rich WA dairy & plant milks.</p>
+                <h4 className="font-serif font-bold text-stone-900 text-base">Colombian Heritage</h4>
+                <p className="text-xs text-stone-600 mt-1">Specialty coffee roasted with care, honoring the bean from soil to cup.</p>
               </div>
 
               <div className="p-4 rounded-xl bg-white border border-stone-200/80 shadow-xs">
@@ -100,7 +102,7 @@ export default function AboutSection({ onOpenKitchen, onOpenCatering }) {
                   <BookOpen className="w-5 h-5" />
                 </div>
                 <h4 className="font-serif font-bold text-stone-900 text-base">The Book Café</h4>
-                <p className="text-xs text-stone-600 mt-1">A cozy cultural corner for book lovers to browse, borrow, and read.</p>
+                <p className="text-xs text-stone-600 mt-1">Curated by Amir: Persian, bilingual, and international literature corner.</p>
               </div>
 
               <div 
@@ -110,8 +112,8 @@ export default function AboutSection({ onOpenKitchen, onOpenCatering }) {
                 <div className="w-9 h-9 rounded-lg bg-orange-50 text-[#C26D43] flex items-center justify-center mb-2.5">
                   <Users className="w-5 h-5" />
                 </div>
-                <h4 className="font-serif font-bold text-stone-900 text-base group-hover:text-[#404D3C] transition-colors">CBD Office Catering</h4>
-                <p className="text-xs text-stone-600 mt-1">Breakfast boxes, artisan focaccias, and sweet slice dessert platters.</p>
+                <h4 className="font-serif font-bold text-stone-900 text-base group-hover:text-[#404D3C] transition-colors">Corporate Catering</h4>
+                <p className="text-xs text-stone-600 mt-1">Artisan platters delivered 7 days across Perth CBD with 3 days notice.</p>
               </div>
 
               <div 
@@ -122,7 +124,7 @@ export default function AboutSection({ onOpenKitchen, onOpenCatering }) {
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <h4 className="font-serif font-bold text-stone-900 text-base group-hover:text-purple-700 transition-colors">Commercial Kitchen</h4>
-                <p className="text-xs text-stone-600 mt-1">Daily Drop culinary partnership & certified kitchen shift hire.</p>
+                <p className="text-xs text-stone-600 mt-1">Culinary collaboration with The Daily Drop for shifts & Dark Kitchens.</p>
               </div>
             </div>
 

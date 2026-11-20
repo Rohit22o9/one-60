@@ -22,9 +22,9 @@ export default function CateringModal({ isOpen, onClose, initialPackage }) {
   const [guestCount, setGuestCount] = useState(initialPackage?.guestCount || 15);
   const [includeCoffee, setIncludeCoffee] = useState(initialPackage?.includeCoffee ?? true);
   const [deliveryDate, setDeliveryDate] = useState(() => {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    return tomorrow.toISOString().split('T')[0];
+    const minNoticeDate = new Date();
+    minNoticeDate.setDate(minNoticeDate.getDate() + 3);
+    return minNoticeDate.toISOString().split('T')[0];
   });
   const [deliveryTime, setDeliveryTime] = useState("11:45 AM");
   const [companyName, setCompanyName] = useState("");

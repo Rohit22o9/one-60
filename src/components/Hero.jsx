@@ -1,19 +1,19 @@
 import React from 'react';
 import { 
   ArrowRight, 
-  Calendar, 
   MapPin, 
   Star, 
   Coffee, 
   Briefcase, 
   UtensilsCrossed, 
-  Clock,
-  BookOpen
+  BookOpen,
+  Sparkles
 } from 'lucide-react';
 import { CAFE_INFO } from '../data/cafeData';
 import Logo from './Logo';
+import { takeawayCup, dishSpread } from '../assets/photos';
 
-export default function Hero({ onOpenReservation, onOpenCatering, onOpenKitchen }) {
+export default function Hero({ onOpenCatering, onOpenKitchen }) {
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-[#FAF8F5] via-[#F4EFEB] to-[#FAF8F5]">
       
@@ -50,7 +50,7 @@ export default function Hero({ onOpenReservation, onOpenCatering, onOpenKitchen 
                 />
               </div>
               <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-[#181513] leading-[1.12]">
-                Australian Coffee. <br />
+                Specialty Coffee. <br />
                 <span className="italic font-normal text-[#404D3C]">Savor the Flavor,</span> <br />
                 Share the Love.
               </h1>
@@ -58,34 +58,34 @@ export default function Hero({ onOpenReservation, onOpenCatering, onOpenKitchen 
 
             {/* Sub-paragraph */}
             <p className="text-base sm:text-lg text-stone-600 max-w-2xl font-light leading-relaxed">
-              Founded by siblings Shabnam and Shaun, ONE60 was born from a shared dream: a space where good food and genuine moments come together. From our Australian-roasted coffee to our cozy Book Café corner, gourmet focaccias, and CBD boardroom catering.
+              Founded by siblings Shabnam and Shaun, ONE60 is Perth CBD’s vibrant sanctuary. Inspired by our Colombian coffee feature wall, we celebrate the complete journey from blossoms and beans to your morning cup. Enjoy artisan focaccias, the cozy Book Café corner, and corporate catering across Perth.
             </p>
 
-            {/* Action Buttons */}
+            {/* Action Buttons (Table Reservation REMOVED) */}
             <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
-              <button
-                onClick={onOpenReservation}
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#404D3C] text-white text-sm font-semibold tracking-wide uppercase hover:bg-[#2f392c] shadow-md hover:shadow-xl transition-all duration-300"
-              >
-                <Calendar className="w-4 h-4" />
-                <span>Reserve a Table</span>
-              </button>
-
               <a
                 href="#menu"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white border border-stone-300 text-stone-800 text-sm font-semibold tracking-wide uppercase hover:bg-stone-50 hover:border-stone-400 shadow-xs transition-all duration-300"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#404D3C] text-white text-sm font-semibold tracking-wide uppercase hover:bg-[#2f392c] shadow-md hover:shadow-xl transition-all duration-300"
               >
-                <span>Explore Menu</span>
-                <ArrowRight className="w-4 h-4 text-stone-500" />
+                <span>Explore Daily Menu</span>
+                <ArrowRight className="w-4 h-4 text-amber-200" />
               </a>
 
               <button
                 onClick={onOpenCatering}
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-[#EBF0E9] border border-[#C5D5C2] text-[#344431] text-sm font-semibold tracking-wide uppercase hover:bg-[#dfe8dc] transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white border border-stone-300 text-stone-800 text-sm font-semibold tracking-wide uppercase hover:bg-stone-50 hover:border-stone-400 shadow-xs transition-all duration-300"
               >
-                <Briefcase className="w-4 h-4" />
+                <Briefcase className="w-4 h-4 text-[#404D3C]" />
                 <span>Corporate Catering</span>
               </button>
+
+              <a
+                href="#coffee"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-[#EBF0E9] border border-[#C5D5C2] text-[#344431] text-sm font-semibold tracking-wide uppercase hover:bg-[#dfe8dc] transition-all duration-300"
+              >
+                <Coffee className="w-4 h-4" />
+                <span>Our Coffee Story</span>
+              </a>
             </div>
 
             {/* Highlight Badges / Quick Trust Factors */}
@@ -95,7 +95,7 @@ export default function Hero({ onOpenReservation, onOpenCatering, onOpenKitchen 
                   <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-stone-900">4.9 / 5.0</div>
+                  <div className="text-xs font-bold text-stone-900">4.9 / 5.0 Google</div>
                   <div className="text-[11px] text-stone-500">Perth Reviews</div>
                 </div>
               </div>
@@ -105,8 +105,8 @@ export default function Hero({ onOpenReservation, onOpenCatering, onOpenKitchen 
                   <BookOpen className="w-4 h-4 text-[#404D3C]" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-stone-900">Book Café</div>
-                  <div className="text-[11px] text-stone-500">Cultural Corner</div>
+                  <div className="text-xs font-bold text-stone-900">The Book Café</div>
+                  <div className="text-[11px] text-stone-500">Curated by Amir</div>
                 </div>
               </div>
 
@@ -115,8 +115,8 @@ export default function Hero({ onOpenReservation, onOpenCatering, onOpenKitchen 
                   <Briefcase className="w-4 h-4 text-emerald-600" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-stone-900">CBD Catering</div>
-                  <div className="text-[11px] text-stone-500">Offices & Boards</div>
+                  <div className="text-xs font-bold text-stone-900">Catering 7 Days</div>
+                  <div className="text-[11px] text-stone-500">3 Days Notice</div>
                 </div>
               </div>
 
@@ -136,59 +136,46 @@ export default function Hero({ onOpenReservation, onOpenCatering, onOpenKitchen 
 
           </div>
 
-          {/* Right Column: Visual Collage & Hero Card */}
+          {/* Right Column: Visual Collage with Real Photo */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
-              {/* Main Feature Image */}
+              {/* Main Feature Image - Real Takeaway Cup & Croissant */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] bg-stone-200">
                 <img 
-                  src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=80" 
-                  alt="Cafe One 60 Perth Interior & Coffee"
+                  src={takeawayCup} 
+                  alt="Cafe One 60 Perth Signature Coffee Cup & Croissant"
                   className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
                 />
                 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+                {/* Floating Tag */}
+                <div className="absolute top-4 left-4 bg-[#404D3C]/90 backdrop-blur-md text-white px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-lg border border-white/20">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                  <span>Fresh Roasted Daily</span>
+                </div>
 
-                {/* Bottom Overlay Card */}
-                <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/95 backdrop-blur-md shadow-lg border border-stone-200 text-stone-900">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-xs uppercase tracking-wider font-semibold text-[#404D3C]">
-                        Shabnam & Shaun
-                      </div>
-                      <div className="font-serif text-lg font-bold text-stone-900">
-                        160 Murray Street Mall
-                      </div>
-                    </div>
-                    <span className="text-xs px-2.5 py-1 rounded-full bg-[#EBF0E9] font-semibold text-[#344431]">
-                      Perth CBD
-                    </span>
+                {/* Bottom Story Overlay */}
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-stone-950/80 via-stone-950/40 to-transparent p-6 text-white">
+                  <div className="text-xs font-bold uppercase tracking-wider text-amber-200 mb-1">
+                    160 Murray Street Mall, Perth CBD
                   </div>
-                  <div className="mt-2 text-xs text-stone-600 flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-stone-400" />
-                    <span>Open 7 Days • From 7:30 AM weekdays</span>
-                  </div>
+                  <p className="font-serif text-lg font-medium">
+                    Shabnam & Shaun’s Warm Perth Meeting Point
+                  </p>
+                  <p className="text-xs text-stone-300 mt-1">
+                    Open 7 Days • From 7:30 AM weekdays
+                  </p>
                 </div>
               </div>
 
-              {/* Floating Badge 1: Official Logo Badge on Deep Green */}
-              <div className="absolute -top-4 -left-4 sm:-left-6">
-                <Logo variant="badge" className="h-6 sm:h-7 w-auto" />
-              </div>
-
-              {/* Floating Badge 2: Commercial Kitchen Partnership */}
-              <div 
-                onClick={onOpenKitchen}
-                className="absolute -bottom-6 -right-4 sm:-right-6 p-3.5 rounded-2xl bg-[#181513] text-white shadow-xl cursor-pointer hover:bg-[#404D3C] transition-colors flex items-center gap-3 max-w-[220px]"
-              >
-                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                  <UtensilsCrossed className="w-5 h-5 text-amber-300" />
+              {/* Secondary Floating Mini Card */}
+              <div className="hidden sm:flex absolute -bottom-6 -left-8 p-3.5 rounded-2xl bg-white border border-stone-200 shadow-xl items-center gap-3 max-w-xs animate-bounce-slight">
+                <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 border border-stone-200">
+                  <img src={dishSpread} alt="Breakfast dish" className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <div className="text-[11px] font-semibold text-amber-200 uppercase tracking-wider">Kitchen Facility</div>
-                  <div className="text-xs text-stone-300">Daily Drop Partnership</div>
+                  <div className="text-xs font-bold text-stone-900">Artisan Focaccias & Food</div>
+                  <div className="text-[11px] text-[#404D3C] font-semibold">Freshly baked in-house</div>
                 </div>
               </div>
 

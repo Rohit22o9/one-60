@@ -1,24 +1,24 @@
 import React from 'react';
 import { TESTIMONIALS } from '../data/cafeData';
-import { Star, Quote, Sparkles } from 'lucide-react';
+import { Star, Quote, Sparkles, CheckCircle } from 'lucide-react';
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-20 md:py-28 bg-[#F4EFEB] relative overflow-hidden">
+    <section id="reviews" className="py-20 md:py-28 bg-[#F4EFEB] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-[#C26D43] mb-3">
+          <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-[#404D3C] mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Community & Critic Acclaim</span>
+            <span>Google Reviews & Community Praise</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-[#181513]">
-            What Perth is Saying About One 60
+            What Perth is Saying About ONE60
           </h2>
-          <div className="w-16 h-0.5 bg-[#C26D43] mx-auto mt-4 mb-4"></div>
+          <div className="w-16 h-0.5 bg-[#404D3C] mx-auto mt-4 mb-4"></div>
           <p className="text-stone-600 font-light text-base sm:text-lg">
-            From CBD executives and morning regulars to catering clients and weekend brunch seekers.
+            From CBD morning regulars and coffee connoisseurs to corporate catering coordinators and Book Café readers.
           </p>
         </div>
 
@@ -27,7 +27,7 @@ export default function TestimonialsSection() {
           {TESTIMONIALS.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-3xl p-8 border border-stone-200/90 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+              className="bg-white rounded-3xl p-8 border border-stone-200/90 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 {/* Top: Stars & Quote Icon */}
@@ -37,7 +37,7 @@ export default function TestimonialsSection() {
                       <Star key={i} className="w-4 h-4 fill-amber-400" />
                     ))}
                   </div>
-                  <Quote className="w-6 h-6 text-[#C26D43]/30" />
+                  <Quote className="w-6 h-6 text-[#404D3C]/30" />
                 </div>
 
                 {/* Quote Text */}
@@ -52,8 +52,9 @@ export default function TestimonialsSection() {
                   <h4 className="font-bold text-stone-900 text-sm">{item.author}</h4>
                   <p className="text-xs text-stone-500">{item.role}</p>
                 </div>
-                <span className="text-[10px] uppercase font-semibold px-2.5 py-1 rounded-full bg-stone-100 text-stone-600">
-                  {item.source}
+                <span className="text-[10px] uppercase font-semibold px-2.5 py-1 rounded-full bg-[#EBF0E9] text-[#404D3C] flex items-center gap-1">
+                  <CheckCircle className="w-3 h-3" />
+                  <span>{item.source}</span>
                 </span>
               </div>
             </div>
@@ -64,4 +65,3 @@ export default function TestimonialsSection() {
     </section>
   );
 }
-
