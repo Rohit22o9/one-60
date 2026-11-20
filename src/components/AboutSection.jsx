@@ -4,11 +4,11 @@ import { dishSpread, coffeeBarista } from '../assets/photos';
 
 export default function AboutSection({ onOpenKitchen, onOpenCatering }) {
   return (
-    <section id="story" className="py-20 md:py-28 bg-[#FAF8F5] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="story" className="py-24 md:py-32 bg-[#FAF8F5] relative">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-20">
           <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-[#404D3C] mb-3">
             <Sparkles className="w-3.5 h-3.5 text-[#C26D43]" />
             <span>Where Good Vibes Brew</span>
@@ -23,7 +23,7 @@ export default function AboutSection({ onOpenKitchen, onOpenCatering }) {
         </div>
 
         {/* Story Grid with Imagery & Pillars */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20">
           
           {/* Left Images Collage with Real Photos */}
           <div className="lg:col-span-6 grid grid-cols-2 gap-4">

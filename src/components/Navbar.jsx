@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
   ShoppingBag, 
-  MapPin, 
   Menu as MenuIcon, 
   X, 
   Phone,
@@ -29,10 +28,10 @@ export default function Navbar({
 
   const navLinks = [
     { name: "Our Story", href: "#story" },
-    { name: "Specialty Coffee", href: "#coffee" },
+    { name: "Coffee", href: "#coffee" },
     { name: "Menu", href: "#menu" },
-    { name: "Corporate Catering", href: "#catering" },
-    { name: "The Book Café", href: "#book-cafe" },
+    { name: "Catering", href: "#catering" },
+    { name: "Book Café", href: "#book-cafe" },
     { name: "Kitchen Hire", href: "#kitchen" },
     { name: "Location & Hours", href: "#location" },
   ];
@@ -41,8 +40,8 @@ export default function Navbar({
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       {/* Top Notification Announcement Bar */}
       {showBanner && (
-        <div className="bg-[#404D3C] text-[#FAF8F5] text-xs font-medium py-2 px-4 transition-all border-b border-[#4d5c49]">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="bg-[#404D3C] text-[#FAF8F5] text-xs font-medium py-2 px-4 sm:px-8 transition-all border-b border-[#4d5c49]">
+          <div className="max-w-[1400px] mx-auto flex items-center justify-between">
             <div className="flex items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap">
               <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span className="font-semibold text-amber-200">Where Good Vibes Brew:</span>
@@ -74,48 +73,48 @@ export default function Navbar({
       <nav 
         className={`w-full transition-all duration-300 ${
           isScrolled 
-            ? 'bg-[#FAF8F5]/95 backdrop-blur-md shadow-md py-2.5 border-b border-stone-200/80' 
-            : 'bg-[#FAF8F5]/90 backdrop-blur-sm py-3.5 border-b border-stone-200/40'
+            ? 'bg-[#FAF8F5]/98 backdrop-blur-md shadow-md py-3 border-b border-stone-200/80' 
+            : 'bg-[#FAF8F5]/95 backdrop-blur-sm py-4 border-b border-stone-200/50'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between gap-6">
           
-          {/* Logo & Official Brand Identity */}
-          <a href="#" className="flex items-center gap-3 group shrink-0">
+          {/* Logo & Official Brand Identity with Generous Right Margin */}
+          <a href="#" className="flex items-center gap-3.5 group shrink-0 mr-4 lg:mr-8 xl:mr-10">
             <Logo 
               variant="dark" 
               className="h-8 sm:h-9 w-auto transition-transform group-hover:scale-105 duration-200"
             />
-            <div className="hidden sm:flex flex-col border-l border-stone-300 pl-3">
-              <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-stone-700 leading-tight">
+            <div className="hidden md:flex flex-col border-l border-stone-300/80 pl-3.5">
+              <span className="text-[10px] uppercase tracking-[0.22em] font-semibold text-stone-700 leading-tight whitespace-nowrap">
                 Murray St Mall
               </span>
-              <span className="text-[9px] uppercase tracking-[0.15em] font-medium text-[#404D3C]">
+              <span className="text-[9px] uppercase tracking-[0.18em] font-medium text-[#404D3C] whitespace-nowrap">
                 Perth CBD
               </span>
             </div>
           </a>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden xl:flex items-center space-x-6 text-[12px] font-semibold tracking-wider uppercase text-stone-700">
+          {/* Desktop Nav Links - Centered, Generous Spacing, Never Wraps */}
+          <div className="hidden xl:flex items-center justify-center space-x-6 2xl:space-x-8 text-[12px] 2xl:text-[13px] font-semibold tracking-wider uppercase text-stone-700 flex-1">
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
                 href={link.href}
-                className="hover:text-[#404D3C] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#404D3C] hover:after:w-full after:transition-all"
+                className="hover:text-[#404D3C] transition-colors py-1 relative whitespace-nowrap shrink-0 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#404D3C] hover:after:w-full after:transition-all"
               >
                 {link.name}
               </a>
             ))}
           </div>
 
-          {/* Action CTAs */}
-          <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
+          {/* Action CTAs with Left Breathing Space */}
+          <div className="flex items-center space-x-3 sm:space-x-4 shrink-0 ml-auto xl:ml-8">
             
             {/* Takeaway Cart Button */}
             <button
               onClick={onOpenCart}
-              className="relative p-2.5 rounded-full hover:bg-stone-100 text-stone-800 transition-colors"
+              className="relative p-2.5 rounded-full hover:bg-stone-200/60 text-stone-800 transition-colors cursor-pointer"
               title="View Takeaway Bag"
               aria-label="View Takeaway Bag"
             >
@@ -127,10 +126,10 @@ export default function Navbar({
               )}
             </button>
 
-            {/* Corporate Catering CTA (Replaces Book Table) */}
+            {/* Corporate Catering Button */}
             <button
               onClick={onOpenCatering}
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#404D3C] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#2f392c] hover:shadow-md transition-all duration-300"
+              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#404D3C] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#2f392c] hover:shadow-lg transition-all duration-300 cursor-pointer whitespace-nowrap"
             >
               <Briefcase className="w-3.5 h-3.5" />
               <span>Corporate Catering</span>
@@ -139,7 +138,7 @@ export default function Navbar({
             {/* Mobile Menu Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 rounded-lg text-stone-800 hover:bg-stone-100"
+              className="xl:hidden p-2 rounded-xl text-stone-800 hover:bg-stone-200/60 transition-colors"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
@@ -150,16 +149,17 @@ export default function Navbar({
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="xl:hidden bg-[#FAF8F5] border-t border-stone-200 px-6 py-6 space-y-4 shadow-xl">
+          <div className="xl:hidden bg-[#FAF8F5] border-t border-stone-200 px-6 py-6 space-y-4 shadow-2xl animate-in slide-in-from-top-2 duration-200">
             <div className="flex flex-col space-y-3">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-stone-800 text-sm font-semibold uppercase tracking-wider hover:text-[#404D3C] py-1 border-b border-stone-100"
+                  className="text-stone-800 text-sm font-semibold uppercase tracking-wider hover:text-[#404D3C] py-2 border-b border-stone-100 flex items-center justify-between"
                 >
-                  {link.name}
+                  <span>{link.name}</span>
+                  <span className="text-stone-400 text-xs">→</span>
                 </a>
               ))}
             </div>
@@ -170,7 +170,7 @@ export default function Navbar({
                   setMobileMenuOpen(false);
                   onOpenCatering();
                 }}
-                className="w-full py-3 rounded-full bg-[#404D3C] text-white text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2"
+                className="w-full py-3.5 rounded-full bg-[#404D3C] text-white text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md"
               >
                 <Briefcase className="w-4 h-4" />
                 <span>Corporate Catering Quote</span>
@@ -178,7 +178,7 @@ export default function Navbar({
 
               <a
                 href={`tel:${CAFE_INFO.phone}`}
-                className="w-full py-2.5 rounded-full bg-stone-100 text-stone-800 text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-full bg-stone-100 text-stone-800 text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2"
               >
                 <Phone className="w-4 h-4 text-[#404D3C]" />
                 <span>Call {CAFE_INFO.phone}</span>

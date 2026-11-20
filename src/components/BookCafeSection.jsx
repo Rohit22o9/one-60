@@ -141,14 +141,14 @@ export default function BookCafeSection() {
   ];
 
   return (
-    <section id="book-cafe" className="py-20 md:py-24 bg-[#F2EDE4] relative overflow-hidden">
+    <section id="book-cafe" className="py-24 md:py-32 bg-[#F2EDE4] relative overflow-hidden">
       {/* Background Subtle Shape */}
       <div className="absolute top-0 left-0 w-80 h-80 bg-[#404D3C]/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-[#404D3C] px-3.5 py-1.5 rounded-full bg-white/80 border border-stone-300/80 mb-3">
             <BookOpen className="w-3.5 h-3.5 text-[#404D3C]" />
             <span>Cultural Corner • In Front of the Coffee Machine</span>
@@ -165,7 +165,7 @@ export default function BookCafeSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-12">
           
           {/* Left: LUXURY INTERACTIVE SLIDESHOW (REAL PHOTOS) */}
           <div className="lg:col-span-6 relative">

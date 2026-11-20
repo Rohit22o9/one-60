@@ -90,13 +90,13 @@ export default function CateringSection({ onOpenCateringWithPackage }) {
     : 0;
 
   return (
-    <section id="catering" className="py-20 md:py-28 bg-[#F4EFEB] relative overflow-hidden">
+    <section id="catering" className="py-24 md:py-32 bg-[#F4EFEB] relative overflow-hidden">
       
       {/* Background Accent Gradients */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#404D3C]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">

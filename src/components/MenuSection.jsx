@@ -48,8 +48,8 @@ export default function MenuSection({ onAddToCart, onSelectDish }) {
   };
 
   return (
-    <section id="menu" className="py-20 md:py-28 bg-[#FAF8F5] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="menu" className="py-24 md:py-32 bg-[#FAF8F5] relative">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
